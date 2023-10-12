@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import dal.DatabaseConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Enseignant;
 
 public class EnseignantDao implements DAOInterface<Enseignant, String> {
@@ -16,7 +17,7 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 
 	@Override
 	public int add(Enseignant item) throws SQLException {
-		String query = "insert into enseignants(matricule, nom, contact) VALUES (?, ?)";
+		String query = "insert into enseignants(matricule, nom, contact) VALUES (?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setString(1, item.getMatricule());
 		ps.setString(2, item.getNom());
@@ -57,11 +58,11 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 	}
 
 	@Override
-	public List<Enseignant> getAll() throws SQLException {
+	public ObservableList<Enseignant> getAll() throws SQLException {
 		String query = "select * from enseignants";
 		PreparedStatement ps = con.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
-		List<Enseignant> ls = new ArrayList<Enseignant>();
+		ObservableList<Enseignant> ls = FXCollections.observableArrayList();
 
 		while (rs.next()) {
 			Enseignant ens = new Enseignant();
@@ -82,5 +83,4 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 		ps.setString(3, ens.getMatricule());
 		ps.executeUpdate();
 	}
-
 }

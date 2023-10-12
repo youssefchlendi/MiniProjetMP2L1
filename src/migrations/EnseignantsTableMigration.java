@@ -1,27 +1,22 @@
 package migrations;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import dal.DatabaseConnection;
 import helpers.SqlHelpers;
 
 public class EnseignantsTableMigration implements MigrationInterface {
-	Connection cnx = DatabaseConnection.getConnection();
 
 	@Override
-	public void migrate(Boolean remove) throws SQLException{
+	public void migrate(Boolean remove) throws SQLException {
 		Boolean tableExists = SqlHelpers.tableExists(cnx, "enseignants");
-		if(tableExists) {
-			if(remove) {
+		if (tableExists) {
+			if (remove) {
 				down();
 				up();
 			}
-		}else {
+		} else {
 			up();
 		}
-		
 	}
 
 	@Override
@@ -37,4 +32,5 @@ public class EnseignantsTableMigration implements MigrationInterface {
 		PreparedStatement ps = cnx.prepareStatement(query);
 		ps.executeUpdate();
 	}
+	
 }

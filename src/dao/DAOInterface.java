@@ -1,7 +1,8 @@
 package dao;
 
 import java.sql.SQLException;
-import java.util.List;
+
+import javafx.collections.ObservableList;
 
 public interface DAOInterface<T,TID> {
 	
@@ -11,7 +12,7 @@ public interface DAOInterface<T,TID> {
 
 	public T get(TID id) throws SQLException;
 
-	public List<T> getAll() throws SQLException;
+	public ObservableList<T> getAll() throws SQLException;
 
 	public void update(T emp) throws SQLException;
 	
