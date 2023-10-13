@@ -28,9 +28,15 @@ public class EnseignantsTableMigration implements MigrationInterface {
 
 	@Override
 	public void down() throws SQLException {
-		String query = "DROP TABLE enseignants";
-		PreparedStatement ps = cnx.prepareStatement(query);
+		PreparedStatement ps;
+		if(SqlHelpers.tableExists(cnx, "sceances")) {
+			String query = "ALTER TABLE sceances " + "DROP FOREIGN KEY fk_enseignant;";
+			ps = cnx.prepareStatement(query);
+			ps.executeUpdate();
+		}
+		String query = "DROP TABLE enseignants;";
+		ps = cnx.prepareStatement(query);
 		ps.executeUpdate();
 	}
-	
+
 }

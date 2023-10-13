@@ -11,10 +11,12 @@ public class Init {
 		EnseignantsTableMigration ensmgr = new EnseignantsTableMigration();
 		ClassesTableMigration clsmgr = new ClassesTableMigration();
 		MatieresTableMigration mtrmgr = new MatieresTableMigration();
+		SceancesTableMigration scsmgr = new SceancesTableMigration();
 		try {
 			ensmgr.migrate(true);
 			clsmgr.migrate(true);
 			mtrmgr.migrate(true);
+			scsmgr.migrate(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

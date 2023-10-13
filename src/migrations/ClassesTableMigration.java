@@ -28,8 +28,14 @@ public class ClassesTableMigration implements MigrationInterface {
 
 	@Override
 	public void down() throws SQLException {
+		PreparedStatement ps;
+		if(SqlHelpers.tableExists(cnx, "sceances")) {
+			String query = "ALTER TABLE sceances " + "DROP FOREIGN KEY fk_classe; ";
+			ps = cnx.prepareStatement(query);
+			ps.executeUpdate();
+		}
 		String query = "DROP TABLE classes";
-		PreparedStatement ps = cnx.prepareStatement(query);
+		ps = cnx.prepareStatement(query);
 		ps.executeUpdate();
 	}
 	
