@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 
 public interface DAOInterface<T,TID> {
 	
-	public int add(T item) throws SQLException;
+	public int add(T item) throws Exception;
 
 	public void delete(TID id) throws SQLException;
 

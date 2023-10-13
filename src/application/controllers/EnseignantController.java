@@ -5,7 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import application.Storage;
 import dao.EnseignantDao;
+import helpers.NavigationHelpers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,11 +23,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Enseignant;
 
-public class EnseignantController implements Initializable {
+public class EnseignantController implements Initializable, IController {
 
 	EnseignantDao dao = new EnseignantDao();
 
@@ -47,9 +49,14 @@ public class EnseignantController implements Initializable {
 
 	@FXML
 	public Button deleteButton;
-	
+
+	@FXML
+	public Button updateButton;
+
 	@FXML
 	public Button addButton;
+
+	NavigationHelpers nh = new NavigationHelpers();
 
 	private ObservableList<Enseignant> data;
 
@@ -61,6 +68,7 @@ public class EnseignantController implements Initializable {
 
 	private void initButtons() {
 		deleteButton.setVisible(false);
+		updateButton.setVisible(false);
 	}
 
 	@FXML
@@ -70,6 +78,7 @@ public class EnseignantController implements Initializable {
 		if (temp != null) {
 			selectedItem = temp;
 			deleteButton.setVisible(true);
+			updateButton.setVisible(true);
 		}
 	}
 
@@ -85,10 +94,25 @@ public class EnseignantController implements Initializable {
 					loadStudents();
 					selectionModel.clearSelection();
 					deleteButton.setVisible(false);
+					updateButton.setVisible(false);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			});
+		}
+	}
+
+	@FXML
+	public void updateButtonClicked(ActionEvent event) {
+		if (selectedItem != null) {
+			Pane ctrl;
+			try {
+				Storage.Enseignant.id = selectedItem.getMatricule();
+				ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/UpsertEnseignant.fxml"));
+				nh.navigate(addButton, "Modifier enseignant", ctrl);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -105,20 +129,16 @@ public class EnseignantController implements Initializable {
 		enseignantsList.setItems(data);
 		selectionModel = enseignantsList.getSelectionModel();
 	}
-	
+
 	@FXML
 	public void addButtonClicked(ActionEvent ev) {
-		Stage stage = (Stage) addButton.getScene().getWindow();
+		Pane ctrl;
 		try {
-			AnchorPane myNewScene = FXMLLoader.load(getClass().getResource("/application/fxml/AddEnseignant.fxml"));
-			Scene scene = new Scene(myNewScene);
-			stage.setScene(scene);
-			stage.setTitle("Ajouter enseignant");
-			stage.show();
+			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/UpsertEnseignant.fxml"));
+			nh.navigate(addButton, "Ajouter enseignant", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	
 }

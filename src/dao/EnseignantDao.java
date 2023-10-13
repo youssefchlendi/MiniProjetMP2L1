@@ -16,7 +16,8 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 	static Connection con = DatabaseConnection.getConnection();
 
 	@Override
-	public int add(Enseignant item) throws SQLException {
+	public int add(Enseignant item) throws Exception {
+		try {
 		String query = "insert into enseignants(matricule, nom, contact) VALUES (?, ?, ?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setString(1, item.getMatricule());
@@ -24,6 +25,12 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 		ps.setString(3, item.getContact());
 		int n = ps.executeUpdate();
 		return n;
+		}
+		catch(Exception ex) {
+			if(ex.getMessage().contains("PRIMARY")) 
+				throw new Exception("L'enseignant avec la matricule "+item.getMatricule()+" existe deja");
+			throw ex;
+		}
 	}
 
 	@Override
@@ -54,7 +61,7 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 		if (check == true) {
 			return ens;
 		} else
-			return null;
+			throw new SQLException();
 	}
 
 	@Override
@@ -76,7 +83,7 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 
 	@Override
 	public void update(Enseignant ens) throws SQLException {
-		String query = "update enseignants set nom=?, " + " contact=? where emp_id = ?";
+		String query = "update enseignants set nom=?, " + " contact=? where matricule = ?";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setString(1, ens.getNom());
 		ps.setString(2, ens.getContact());

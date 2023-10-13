@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.AddEnseignantController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.UpsertEnseignantController">
    <children>
       <ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -27,11 +27,11 @@
             </Label>
             <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <buttons>
-                <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-color: e8003f;" text="x Annuler" textFill="WHITE">
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" style="-fx-background-color: e8003f;" text="x Annuler" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="18.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #42b15d;" text="+ Valider" textFill="WHITE">
+                  <Button fx:id="upsertButton" onAction="#upsertButtonClicked" mnemonicParsing="false" style="-fx-background-color: #42b15d;" text="+ Valider" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="18.0" />
                      </font>
@@ -45,7 +45,7 @@
                         <Font name="Tahoma Bold" size="21.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="matricule" promptText="Merci d'entrer la matricule de l'enseignant" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -58,7 +58,7 @@
                         <Font name="Tahoma Bold" size="21.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="nom" promptText="Merci d'entrer le nom de l'enseignant" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -71,7 +71,7 @@
                         <Font name="Tahoma Bold" size="21.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="contact" promptText="Merci d'entrer le contact de l'enseignant" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

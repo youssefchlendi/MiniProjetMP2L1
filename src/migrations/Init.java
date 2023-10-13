@@ -8,7 +8,7 @@ public class Init {
 	public void run(Boolean seed) {
 		EnseignantsTableMigration ensmgr = new EnseignantsTableMigration();
 		try {
-			ensmgr.migrate(false);
+			ensmgr.migrate(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

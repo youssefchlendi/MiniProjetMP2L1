@@ -17,7 +17,7 @@ public class EnseignantsSeeder extends Seeders {
 					StringHelpers.generateRandomString(15), StringHelpers.generateRandomString(25));
 			try {
 				dao.add(ens);
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
