@@ -31,6 +31,16 @@ public class Sceance {
 		this.matiere = matiere;
 		this.enseignant = enseignant;
 	}
+	
+	public Sceance(LocalDateTime heureDebut, LocalDateTime heureFin, Classe classe, Matiere matiere,
+			Enseignant enseignant) {
+		super();
+		this.heureDebut = heureDebut;
+		this.heureFin = heureFin;
+		this.classe = classe;
+		this.matiere = matiere;
+		this.enseignant = enseignant;
+	}
 
 	public Classe getClasse() {
 		return classe;

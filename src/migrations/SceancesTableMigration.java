@@ -22,7 +22,7 @@ public class SceancesTableMigration implements MigrationInterface {
 	@Override
 	public void up() throws SQLException {
 		String query = "CREATE TABLE sceances ("
-				+ "			matricule INT AUTO_INCREMENT PRIMARY KEY,"
+				+ "			id INT AUTO_INCREMENT PRIMARY KEY,"
 				+ "			heure_debut DATETIME NOT NULL,"
 				+ "			heure_fin DATETIME NOT NULL,"
 				+ "			id_enseignant VARCHAR(255),"

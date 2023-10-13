@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import seeders.ClassesSeeder;
 import seeders.EnseignantsSeeder;
 import seeders.MatieresSeeder;
+import seeders.SceancesSeeder;
 
 public class Init {
 	public void run(Boolean seed) {
@@ -26,10 +27,12 @@ public class Init {
 			EnseignantsSeeder ensSeeder = new EnseignantsSeeder();
 			ClassesSeeder clsSeeder = new ClassesSeeder();
 			MatieresSeeder mtrSeeder = new MatieresSeeder();
+			SceancesSeeder scsSeeder = new SceancesSeeder();
 			
 			ensSeeder.seed();
 			clsSeeder.seed();
 			mtrSeeder.seed();
+			scsSeeder.seed();
 		}
 	}
 }
