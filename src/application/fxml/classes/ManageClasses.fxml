@@ -15,20 +15,20 @@
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
 	prefWidth="1300.0" xmlns="http://javafx.com/javafx/21"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.controllers.EnseignantController">
+	fx:controller="application.controllers.classes.ClasseController">
 	<children>
 		<ImageView AnchorPane.bottomAnchor="0.0"
 			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 			AnchorPane.topAnchor="0.0">
 			<image>
-				<Image url="@../assets/back.jpg" />
+				<Image url="@../../assets/back.jpg" />
 			</image>
 		</ImageView>
 		<AnchorPane style="-fx-background-color: white;"
 			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0"
 			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
 			<children>
-				<Label text="Gestion des enseignants"
+				<Label text="Gestion des classes"
 					AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<font>
 						<Font name="Tahoma Bold" size="36.0" />
@@ -43,7 +43,7 @@
 						<Font name="Tahoma" size="18.0" />
 					</font>
 				</Button>
-				<TableView fx:id="enseignantsList"
+				<TableView fx:id="classesList"
 					onMouseClicked="#clickItem" prefHeight="380.0" prefWidth="1146.0"
 					AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0"
 					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
@@ -52,8 +52,6 @@
 							prefWidth="150.0" text="Matricule" />
 						<TableColumn fx:id="nom" minWidth="-Infinity"
 							prefWidth="150.0" text="Nom" />
-						<TableColumn fx:id="contact" minWidth="-Infinity"
-							prefWidth="150.0" text="Contact" />
 					</columns>
 				</TableView>
 				<ButtonBar prefHeight="40.0" prefWidth="200.0"

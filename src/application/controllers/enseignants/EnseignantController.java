@@ -1,4 +1,4 @@
-package application.controllers;
+package application.controllers.enseignants;
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.Storage;
+import application.controllers.IController;
 import dao.EnseignantDao;
 import helpers.NavigationHelpers;
 import javafx.collections.ObservableList;
@@ -62,7 +63,7 @@ public class EnseignantController implements Initializable, IController {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadStudents();
+		loadTeachers();
 		initButtons();
 	}
 
@@ -91,7 +92,7 @@ public class EnseignantController implements Initializable, IController {
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> {
 				try {
 					dao.delete(selectedItem.getMatricule());
-					loadStudents();
+					loadTeachers();
 					selectionModel.clearSelection();
 					deleteButton.setVisible(false);
 					updateButton.setVisible(false);
@@ -108,7 +109,7 @@ public class EnseignantController implements Initializable, IController {
 			Pane ctrl;
 			try {
 				Storage.Enseignant.id = selectedItem.getMatricule();
-				ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/UpsertEnseignant.fxml"));
+				ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/enseignants/UpsertEnseignant.fxml"));
 				nh.navigate(addButton, "Modifier enseignant", ctrl);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -116,7 +117,7 @@ public class EnseignantController implements Initializable, IController {
 		}
 	}
 
-	private void loadStudents() {
+	private void loadTeachers() {
 		try {
 			data = dao.getAll();
 		} catch (SQLException e) {
@@ -134,7 +135,7 @@ public class EnseignantController implements Initializable, IController {
 	public void addButtonClicked(ActionEvent ev) {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/UpsertEnseignant.fxml"));
+			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/enseignants/UpsertEnseignant.fxml"));
 			nh.navigate(addButton, "Ajouter enseignant", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();

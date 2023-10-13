@@ -16,16 +16,11 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			initDb.run(true);
-			Parent root = FXMLLoader.load(getClass().getResource("fxml/ManageEnseignants.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("fxml/classes/ManageClasses.fxml"));
 			primaryStage.setTitle("Systeme de gestion des emplois");
 			primaryStage.getIcons().add(new Image("file:/assets/icon.png"));
 			primaryStage.setScene(new Scene(root));
 			primaryStage.show();
-			/*
-			 * BorderPane root = new BorderPane(); Scene scene = new Scene(root,400,400);
-			 * scene.getStylesheets().add(getClass().getResource("application.css").
-			 * toExternalForm()); primaryStage.setScene(scene); primaryStage.show();
-			 */
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
