@@ -1,7 +1,5 @@
 package seeders;
 
-import java.sql.SQLException;
-
 import dao.EnseignantDao;
 import helpers.StringHelpers;
 import models.Enseignant;

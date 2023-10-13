@@ -1,4 +1,4 @@
-package application.controllers.enseignants;
+package application.controllers.matieres;
 
 import java.io.IOException;
 import java.net.URL;
@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import application.Storage;
 import application.controllers.IController;
-import dao.EnseignantDao;
+import dao.MatieresDao;
 import helpers.NavigationHelpers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,27 +24,24 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import models.Enseignant;
+import models.Matiere;
 
-public class EnseignantController implements Initializable, IController {
+public class MatiereController implements Initializable, IController {
 
-	EnseignantDao dao = new EnseignantDao();
+	MatieresDao dao = new MatieresDao();
 
-	Enseignant selectedItem;
+	Matiere selectedItem;
 
-	TableViewSelectionModel<Enseignant> selectionModel;
-
-	@FXML
-	private TableView<Enseignant> enseignantsList;
+	TableViewSelectionModel<Matiere> selectionModel;
 
 	@FXML
-	public TableColumn<Enseignant, String> matricule;
+	private TableView<Matiere> matieresList;
 
 	@FXML
-	public TableColumn<Enseignant, String> nom;
+	public TableColumn<Matiere, String> id;
 
 	@FXML
-	public TableColumn<Enseignant, String> contact;
+	public TableColumn<Matiere, String> nom;
 
 	@FXML
 	public Button deleteButton;
@@ -57,11 +54,11 @@ public class EnseignantController implements Initializable, IController {
 
 	NavigationHelpers nh = new NavigationHelpers();
 
-	private ObservableList<Enseignant> data;
+	private ObservableList<Matiere> data;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		loadTeachers();
+		loadMatieres();
 		initButtons();
 	}
 
@@ -73,7 +70,7 @@ public class EnseignantController implements Initializable, IController {
 	@FXML
 	public void clickItem(MouseEvent event) {
 		event.consume();
-		Enseignant temp = selectionModel.getSelectedItem();
+		Matiere temp = selectionModel.getSelectedItem();
 		if (temp != null) {
 			selectedItem = temp;
 			deleteButton.setVisible(true);
@@ -85,12 +82,12 @@ public class EnseignantController implements Initializable, IController {
 	public void deleteButtonClicked(ActionEvent event) {
 		if (selectedItem != null) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Supprimer enseignant");
-			alert.setContentText("Êtes-vous sûr de vouloir supprimer cet enseignant (" + selectedItem.getNom() + ") ?");
+			alert.setTitle("Supprimer matiere");
+			alert.setContentText("Êtes-vous sûr de vouloir supprimer cette matiere (" + selectedItem.getNom() + ") ?");
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> {
 				try {
-					dao.delete(selectedItem.getMatricule());
-					loadTeachers();
+					dao.delete(selectedItem.getId());
+					loadMatieres();
 					selectionModel.clearSelection();
 					deleteButton.setVisible(false);
 					updateButton.setVisible(false);
@@ -106,35 +103,34 @@ public class EnseignantController implements Initializable, IController {
 		if (selectedItem != null) {
 			Pane ctrl;
 			try {
-				Storage.Enseignant.id = selectedItem.getMatricule();
-				ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/enseignants/UpsertEnseignant.fxml"));
-				nh.navigate(addButton, "Modifier enseignant", ctrl);
+				Storage.Matiere.id = selectedItem.getId();
+				ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/matieres/UpsertMatieres.fxml"));
+				nh.navigate(addButton, "Modifier matiere", ctrl);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	private void loadTeachers() {
+	private void loadMatieres() {
 		try {
 			data = dao.getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		matricule.setCellValueFactory(new PropertyValueFactory<>("Matricule"));
+		id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		nom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
-		contact.setCellValueFactory(new PropertyValueFactory<>("Contact"));
-		enseignantsList.setItems(data);
-		selectionModel = enseignantsList.getSelectionModel();
+		matieresList.setItems(data);
+		selectionModel = matieresList.getSelectionModel();
 	}
 
 	@FXML
 	public void addButtonClicked(ActionEvent ev) {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/enseignants/UpsertEnseignant.fxml"));
-			nh.navigate(addButton, "Ajouter enseignant", ctrl);
+			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/matieres/UpsertMatieres.fxml"));
+			nh.navigate(addButton, "Ajouter matiere", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

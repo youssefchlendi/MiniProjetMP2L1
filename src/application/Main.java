@@ -16,7 +16,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			initDb.run(true);
-			Parent root = FXMLLoader.load(getClass().getResource("fxml/classes/ManageClasses.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("fxml/matieres/ManageMatieres.fxml"));
 			primaryStage.setTitle("Systeme de gestion des emplois");
 			primaryStage.getIcons().add(new Image("file:/assets/icon.png"));
 			primaryStage.setScene(new Scene(root));
