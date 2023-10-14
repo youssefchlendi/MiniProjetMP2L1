@@ -235,6 +235,28 @@ public class UpsertSceanceController implements Initializable, IController {
 			return false;
 		}
 
+		try {
+			LocalTime.parse(heureDebut.getText());
+		} catch (Exception e) {
+			alert.setContentText("Veuillez entrer une heure de début valide");
+			alert.show();
+			return false;
+		}
+
+		try {
+			LocalTime.parse(heureFin.getText());
+		} catch (Exception e) {
+			alert.setContentText("Veuillez entrer une heure de fin valide");
+			alert.show();
+			return false;
+		}
+
+		if (LocalTime.parse(heureDebut.getText()).isAfter(LocalTime.parse(heureFin.getText()))) {
+			alert.setContentText("L'heure de début doit être avant l'heure de fin");
+			alert.show();
+			return false;
+		}
+
 		if (classes.getValue() == null) {
 			alert.setContentText("Veuillez choisir une classe");
 			alert.show();
