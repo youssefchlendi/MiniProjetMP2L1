@@ -69,6 +69,7 @@ public class UpsertEnseignantController implements Initializable, IController {
 		try {
 			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/enseignants/ManageEnseignants.fxml"));
 			nh.navigate(cancelButton, "Gérer les enseignants", ctrl);
+			clearData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -76,11 +77,6 @@ public class UpsertEnseignantController implements Initializable, IController {
 
 	@FXML
 	public void cancelButtonClicked(ActionEvent event) {
-		Storage.Enseignant.id = null;
-		item = null;
-		matricule.setText("");
-		nom.setText("");
-		contact.setText("");
 		navigateToManageEnseignants();
 	}
 
@@ -119,6 +115,14 @@ public class UpsertEnseignantController implements Initializable, IController {
 				}
 			}
 		}
+	}
+
+	public void clearData(){
+		Storage.Enseignant.id = null;
+		item = null;
+		matricule.setText("");
+		nom.setText("");
+		contact.setText("");
 	}
 
 	public Boolean validateForm() {

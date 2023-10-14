@@ -65,6 +65,7 @@ public class UpsertClasseController implements Initializable, IController {
 		try {
 			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/classes/ManageClasses.fxml"));
 			nh.navigate(cancelButton, "Gérer les classes", ctrl);
+			clearData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -72,10 +73,6 @@ public class UpsertClasseController implements Initializable, IController {
 
 	@FXML
 	public void cancelButtonClicked(ActionEvent event) {
-		Storage.Classe.id = null;
-		item = null;
-		matricule.setText("");
-		nom.setText("");
 		navigateToManageClasses();
 	}
 
@@ -114,6 +111,13 @@ public class UpsertClasseController implements Initializable, IController {
 				}
 			}
 		}
+	}
+
+	private void clearData(){
+		Storage.Classe.id = null;
+		item = null;
+		matricule.setText("");
+		nom.setText("");
 	}
 
 	public Boolean validateForm() {

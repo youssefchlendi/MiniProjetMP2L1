@@ -65,6 +65,7 @@ public class UpsertMatiereController implements Initializable, IController {
 		try {
 			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/matieres/ManageMatieres.fxml"));
 			nh.navigate(cancelButton, "Gérer les matieres", ctrl);
+			clearData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -72,10 +73,6 @@ public class UpsertMatiereController implements Initializable, IController {
 
 	@FXML
 	public void cancelButtonClicked(ActionEvent event) {
-		Storage.Matiere.id = null;
-		item = null;
-		id.setText("");
-		nom.setText("");
 		navigateToManageMatieres();
 	}
 
@@ -94,7 +91,7 @@ public class UpsertMatiereController implements Initializable, IController {
 					alert.setAlertType(AlertType.ERROR);
 					alert.setTitle("Erreur");
 					alert.setContentText(
-							"Matiere non ajoutée, un erreur est survenue.\nmessage d'erreur: " + e.getMessage());
+							"Matiere non modifiée, un erreur est survenue.\nmessage d'erreur: " + e.getMessage());
 					alert.show();
 				}				
 			}else {
@@ -114,6 +111,13 @@ public class UpsertMatiereController implements Initializable, IController {
 				}
 			}
 		}
+	}
+	
+	private void clearData() {
+		Storage.Matiere.id = null;
+		item = null;
+		id.setText("");
+		nom.setText("");
 	}
 
 	public Boolean validateForm() {
