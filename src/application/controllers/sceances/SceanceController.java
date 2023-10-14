@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.Storage;
-import application.controllers.IController;
+import application.controllers.*;
 import dao.SceancesDao;
 import helpers.NavigationHelpers;
 import javafx.beans.property.SimpleStringProperty;
@@ -67,6 +67,9 @@ public class SceanceController implements Initializable, IController {
 
 	@FXML
 	public Button addButton;
+	
+	@FXML
+	public Button homeButton;
 
 	NavigationHelpers nh = new NavigationHelpers();
 
@@ -157,4 +160,14 @@ public class SceanceController implements Initializable, IController {
 		}
 	}
 
+	@FXML
+	public void goHome() {
+		Pane ctrl;
+		try {
+			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/dashboard/Dashboard.fxml"));
+			nh.navigate(homeButton, "Dashboard", ctrl);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -81,5 +81,13 @@
 				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
 			</padding>
 		</AnchorPane>
+		<Button onAction="#goHome" mnemonicParsing="false" prefHeight="46.0" fx:id="homeButton"
+			prefWidth="45.0" text="🏠" AnchorPane.bottomAnchor="654.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1255.0"
+			AnchorPane.topAnchor="0.0">
+			<font>
+				<Font name="System Bold" size="19.0" />
+			</font>
+		</Button>
 	</children>
 </AnchorPane>

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import application.Storage;
-import application.controllers.IController;
+import application.controllers.*;
 import dao.EnseignantDao;
 import helpers.NavigationHelpers;
 import javafx.collections.ObservableList;
@@ -54,6 +54,9 @@ public class EnseignantController implements Initializable, IController {
 
 	@FXML
 	public Button addButton;
+	
+	@FXML
+	public Button homeButton;
 
 	NavigationHelpers nh = new NavigationHelpers();
 
@@ -135,6 +138,17 @@ public class EnseignantController implements Initializable, IController {
 		try {
 			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/enseignants/UpsertEnseignant.fxml"));
 			nh.navigate(addButton, "Ajouter enseignant", ctrl);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void goHome() {
+		Pane ctrl;
+		try {
+			ctrl = FXMLLoader.load(getClass().getResource("/application/fxml/dashboard/Dashboard.fxml"));
+			nh.navigate(homeButton, "Dashboard", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
