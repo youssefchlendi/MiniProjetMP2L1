@@ -71,6 +71,9 @@ public class SceanceController implements Initializable, IController {
 	public TableColumn<Sceance, String> enseignant;
 
 	@FXML
+	public TableColumn<Sceance, String> enseignantContact;
+
+	@FXML
 	public Button deleteButton;
 
 	@FXML
@@ -250,8 +253,8 @@ public class SceanceController implements Initializable, IController {
 		heureFin.setCellValueFactory(new PropertyValueFactory<>("heureFin"));
 		classe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClasse().getNom()));
 		matiere.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMatiere().getNom()));
-		enseignant.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getEnseignant().getNom()));
+		enseignant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEnseignant().getNom()));
+		enseignantContact.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEnseignant().getContact()));
 		sceancesList.setItems(data);
 		selectionModel = sceancesList.getSelectionModel();
 	}

@@ -65,6 +65,8 @@
 							prefWidth="150.0" text="Matiere" />
 						<TableColumn fx:id="enseignant" minWidth="-Infinity"
 							prefWidth="150.0" text="Enseignant" />
+						<TableColumn fx:id="enseignantContact" minWidth="-Infinity"
+							prefWidth="150.0" text="Contact Enseignant" />
 					</columns>
 				</TableView>
 				<ButtonBar prefHeight="40.0" prefWidth="200.0"
