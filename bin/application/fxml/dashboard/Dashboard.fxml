@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.dashboard.DashboardController">
+	<children>
+		<ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<image>
+				<Image url="@../../assets/back.jpg" />
+			</image>
+		</ImageView>
+		<AnchorPane style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+			<children>
+				<Label text="Page d'acceuil" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<font>
+						<Font name="Tahoma Bold" size="36.0" />
+					</font>
+				</Label>
+            <FlowPane prefHeight="200.0" prefWidth="200.0" rowValignment="TOP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+               <children>
+                  <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2d969b;">
+                     <children>
+                        <Label text="Enseignants" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="enseignantsCount" layoutX="25.0" layoutY="25.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="81.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Hyperlink onAction="#goToEnseignants"  text="▶" textFill="WHITE">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </VBox>
+                  <VBox layoutX="20.0" layoutY="20.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f06937;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label text="Matieres" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="matieresCount"  layoutX="25.0" layoutY="25.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="81.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Hyperlink text="▶" textFill="WHITE" onAction="#goToMatieres">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </VBox>
+                  <VBox layoutX="20.0" layoutY="20.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5a5050;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label text="Classes" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="classesCount"  layoutX="25.0" layoutY="25.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="81.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Hyperlink text="▶" textFill="WHITE" onAction="#goToClasses">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </VBox>
+                  <VBox layoutX="452.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #5f9b8c;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Label text="Sceances" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sceancesCount"  layoutX="25.0" layoutY="25.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma Bold" size="81.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Hyperlink text="▶" textFill="WHITE" onAction="#goToSceances">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Hyperlink>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </FlowPane.margin>
+                  </VBox>
+               </children>
+            </FlowPane>
+			</children>
+			<padding>
+				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+			</padding>
+		</AnchorPane>
+	</children>
+</AnchorPane>

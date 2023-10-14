@@ -88,4 +88,20 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 		ps.setString(3, ens.getMatricule());
 		ps.executeUpdate();
 	}
+
+	@Override
+	public int count() {
+		try {
+			String query = "select count(*) from enseignants";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			int n = 0;
+			while (rs.next()) {
+				n = rs.getInt(1);
+			}
+			return n;
+		} catch (Exception ex) {
+			return 0;
+		}
+	}
 }

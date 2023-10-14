@@ -15,5 +15,7 @@ public interface DAOInterface<T,TID> {
 	public ObservableList<T> getAll() throws SQLException;
 
 	public void update(T emp) throws SQLException;
+
+	public int count();
 	
 }

@@ -83,4 +83,17 @@ public class ClassesDao implements DAOInterface<Classe, String> {
 		ps.setString(2, cls.getMatricule());
 		ps.executeUpdate();
 	}
+
+	@Override
+	public int count() {
+		try {
+			String query = "select count(*) from classes";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt(1);
+		} catch (Exception ex) {
+			return 0;
+		}
+	}
 }
