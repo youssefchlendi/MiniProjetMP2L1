@@ -23,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 import javafx.util.StringConverter;
 import models.Classe;
 import models.Enseignant;
@@ -62,6 +63,9 @@ public class UpsertSceanceController implements Initializable, IController {
 	@FXML
 	public ComboBox<Enseignant> enseignants;
 
+	@FXML
+	public Label title;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	Alert alert = new Alert(AlertType.NONE);
@@ -90,6 +94,7 @@ public class UpsertSceanceController implements Initializable, IController {
 				classes.setValue(item.getClasse());
 				matieres.setValue(item.getMatiere());
 				enseignants.setValue(item.getEnseignant());
+				title.setText("Modifier la sceance");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				alert.setAlertType(AlertType.ERROR);
@@ -97,6 +102,8 @@ public class UpsertSceanceController implements Initializable, IController {
 				alert.show();
 				navigateToManageSceances();
 			}
+		}else{
+			title.setText("Ajouter une sceance");
 		}
 	}
 

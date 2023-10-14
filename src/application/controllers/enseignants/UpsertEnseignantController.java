@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 import models.Enseignant;
 
 public class UpsertEnseignantController implements Initializable, IController {
@@ -41,6 +42,9 @@ public class UpsertEnseignantController implements Initializable, IController {
 	@FXML
 	public TextField contact;
 
+	@FXML
+	public Label title;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	Alert alert = new Alert(AlertType.NONE);
@@ -54,6 +58,7 @@ public class UpsertEnseignantController implements Initializable, IController {
 				nom.setText(item.getNom());
 				contact.setText(item.getContact());
 				matricule.setDisable(true);
+				title.setText("Modifier l'enseignant");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				alert.setAlertType(AlertType.ERROR);
@@ -61,6 +66,8 @@ public class UpsertEnseignantController implements Initializable, IController {
 				alert.show();
 				navigateToManageEnseignants();
 			}
+		}else {
+			title.setText("Ajouter un enseignant");
 		}
 	}
 

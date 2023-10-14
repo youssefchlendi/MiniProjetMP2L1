@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 import models.Matiere;
 
 public class UpsertMatiereController implements Initializable, IController {
@@ -38,6 +39,9 @@ public class UpsertMatiereController implements Initializable, IController {
 	@FXML
 	public TextField nom;
 
+	@FXML
+	public Label title;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	Alert alert = new Alert(AlertType.NONE);
@@ -50,6 +54,7 @@ public class UpsertMatiereController implements Initializable, IController {
 				id.setText(item.getId());
 				nom.setText(item.getNom());
 				id.setDisable(true);
+				title.setText("Modifier la matiere");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				alert.setAlertType(AlertType.ERROR);
@@ -57,6 +62,8 @@ public class UpsertMatiereController implements Initializable, IController {
 				alert.show();
 				navigateToManageMatieres();
 			}
+		}else {
+			title.setText("Ajouter une matiere");
 		}
 	}
 

@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 import models.Classe;
 
 public class UpsertClasseController implements Initializable, IController {
@@ -38,6 +39,9 @@ public class UpsertClasseController implements Initializable, IController {
 	@FXML
 	public TextField nom;
 
+	@FXML
+	public Label title;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	Alert alert = new Alert(AlertType.NONE);
@@ -50,6 +54,7 @@ public class UpsertClasseController implements Initializable, IController {
 				matricule.setText(item.getMatricule());
 				nom.setText(item.getNom());
 				matricule.setDisable(true);
+				title.setText("Modifier la classe");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				alert.setAlertType(AlertType.ERROR);
@@ -57,6 +62,8 @@ public class UpsertClasseController implements Initializable, IController {
 				alert.show();
 				navigateToManageClasses();
 			}
+		}else {
+			title.setText("Ajouter une classe");
 		}
 	}
 
