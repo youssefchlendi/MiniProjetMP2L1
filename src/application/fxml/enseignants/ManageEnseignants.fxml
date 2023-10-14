@@ -44,8 +44,8 @@
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField />
-                              <Button mnemonicParsing="false" text="X" textFill="RED" />
+                              <TextField fx:id="matriculeFilter" />
+                              <Button onAction="#clearMatriculeFilter" mnemonicParsing="false" text="X" textFill="RED" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -58,8 +58,8 @@
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField />
-                              <Button mnemonicParsing="false" text="X" textFill="RED" />
+                              <TextField fx:id="nomFilter"/>
+                              <Button onAction="#clearNomFilter" mnemonicParsing="false" text="X" textFill="RED" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -72,8 +72,8 @@
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                               </Label>
-                              <TextField />
-                              <Button mnemonicParsing="false" text="X" textFill="RED" />
+                              <TextField fx:id="contactFilter"/>
+                              <Button onAction="#clearContactFilter" mnemonicParsing="false" text="X" textFill="RED" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

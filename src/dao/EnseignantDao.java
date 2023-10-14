@@ -16,17 +16,16 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 	@Override
 	public int add(Enseignant item) throws Exception {
 		try {
-		String query = "insert into enseignants(matricule, nom, contact) VALUES (?, ?, ?)";
-		PreparedStatement ps = con.prepareStatement(query);
-		ps.setString(1, item.getMatricule());
-		ps.setString(2, item.getNom());
-		ps.setString(3, item.getContact());
-		int n = ps.executeUpdate();
-		return n;
-		}
-		catch(Exception ex) {
-			if(ex.getMessage().contains("PRIMARY")) 
-				throw new Exception("L'enseignant avec la matricule "+item.getMatricule()+" existe deja");
+			String query = "insert into enseignants(matricule, nom, contact) VALUES (?, ?, ?)";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, item.getMatricule());
+			ps.setString(2, item.getNom());
+			ps.setString(3, item.getContact());
+			int n = ps.executeUpdate();
+			return n;
+		} catch (Exception ex) {
+			if (ex.getMessage().contains("PRIMARY"))
+				throw new Exception("L'enseignant avec la matricule " + item.getMatricule() + " existe deja");
 			throw ex;
 		}
 	}
@@ -105,23 +104,28 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 		}
 	}
 
-	public ObservableList<Enseignant> filter(String matricule, String nom, String contact) throws SQLException {
-		String query = "select * from enseignants where matricule like ? and nom like ? and contact like ?";
-		PreparedStatement ps = con.prepareStatement(query);
-		ps.setString(1, "%" + matricule + "%");
-		ps.setString(2, "%" + nom + "%");
-		ps.setString(3, "%" + contact + "%");
-		ResultSet rs = ps.executeQuery();
-		ObservableList<Enseignant> ls = FXCollections.observableArrayList();
+	public ObservableList<Enseignant> filter(String matricule, String nom, String contact) {
+		try {
 
-		while (rs.next()) {
-			Enseignant ens = new Enseignant();
-			ens.setMatricule(rs.getString("matricule"));
-			ens.setNom(rs.getString("nom"));
-			ens.setContact(rs.getString("contact"));
-			ls.add(ens);
+			String query = "select * from enseignants where matricule like ? and nom like ? and contact like ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, "%" + matricule + "%");
+			ps.setString(2, "%" + nom + "%");
+			ps.setString(3, "%" + contact + "%");
+			ResultSet rs = ps.executeQuery();
+			ObservableList<Enseignant> ls = FXCollections.observableArrayList();
+
+			while (rs.next()) {
+				Enseignant ens = new Enseignant();
+				ens.setMatricule(rs.getString("matricule"));
+				ens.setNom(rs.getString("nom"));
+				ens.setContact(rs.getString("contact"));
+				ls.add(ens);
+			}
+			return ls;
+		} catch (Exception exd) {
+			return FXCollections.observableArrayList();
 		}
-		return ls;
 	}
 
 }
