@@ -104,4 +104,24 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 			return 0;
 		}
 	}
+
+	public ObservableList<Enseignant> filter(String matricule, String nom, String contact) throws SQLException {
+		String query = "select * from enseignants where matricule like ? and nom like ? and contact like ?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1, "%" + matricule + "%");
+		ps.setString(2, "%" + nom + "%");
+		ps.setString(3, "%" + contact + "%");
+		ResultSet rs = ps.executeQuery();
+		ObservableList<Enseignant> ls = FXCollections.observableArrayList();
+
+		while (rs.next()) {
+			Enseignant ens = new Enseignant();
+			ens.setMatricule(rs.getString("matricule"));
+			ens.setNom(rs.getString("nom"));
+			ens.setContact(rs.getString("contact"));
+			ls.add(ens);
+		}
+		return ls;
+	}
+
 }

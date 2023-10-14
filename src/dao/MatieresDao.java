@@ -96,4 +96,27 @@ public class MatieresDao implements DAOInterface<Matiere, String> {
 			return 0;
 		}
 	}
+
+	public ObservableList<Matiere> filter(String id, String nom) {
+		try {
+
+			String query = "select * from matieres where id like ? and nom like ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, "%" + id + "%");
+			ps.setString(2, "%" + nom + "%");
+			ResultSet rs = ps.executeQuery();
+			ObservableList<Matiere> ls = FXCollections.observableArrayList();
+
+			while (rs.next()) {
+				Matiere cls = new Matiere();
+				cls.setId(rs.getString("id"));
+				cls.setNom(rs.getString("nom"));
+				ls.add(cls);
+			}
+			return ls;
+		} catch (Exception ex) {
+			return FXCollections.observableArrayList();
+		}
+	}
+
 }

@@ -6,72 +6,103 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-	prefWidth="1300.0" xmlns="http://javafx.com/javafx/21"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.controllers.enseignants.EnseignantController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.enseignants.EnseignantController">
 	<children>
-		<ImageView AnchorPane.bottomAnchor="0.0"
-			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-			AnchorPane.topAnchor="0.0">
+		<ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<image>
 				<Image url="@../../assets/back.jpg" />
 			</image>
 		</ImageView>
-		<AnchorPane style="-fx-background-color: white;"
-			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0"
-			AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+		<AnchorPane style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
 			<children>
-				<Label text="Gestion des enseignants"
-					AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<Label text="Gestion des enseignants" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<font>
 						<Font name="Tahoma Bold" size="36.0" />
 					</font>
 				</Label>
-				<Button fx:id="addButton" layoutX="1122.0" layoutY="58.0"
-					mnemonicParsing="false" onAction="#addButtonClicked"
-					style="-fx-background-color: #42b15d;" text="+ Ajouter"
-					textFill="WHITE" AnchorPane.rightAnchor="5.199999999999818"
-					AnchorPane.topAnchor="28.0">
+            <FlowPane orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="305.6" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
+               <children>
+                  <Label text="Filtres :">
+                     <font>
+                        <Font name="Tahoma Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="39.0" prefWidth="1150.0">
+                     <children>
+                        <HBox prefHeight="39.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Matricule : ">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField />
+                              <Button mnemonicParsing="false" text="X" textFill="RED" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="39.0" prefWidth="500.0">
+                           <children>
+                              <Label text="Nom : ">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField />
+                              <Button mnemonicParsing="false" text="X" textFill="RED" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox layoutX="660.0" layoutY="10.0" prefHeight="39.0" prefWidth="500.0">
+                           <children>
+                              <Label text="Contact : ">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField />
+                              <Button mnemonicParsing="false" text="X" textFill="RED" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </FlowPane>
+				<Button fx:id="addButton" layoutX="1122.0" layoutY="58.0" mnemonicParsing="false" onAction="#addButtonClicked" style="-fx-background-color: #42b15d;" text="+ Ajouter" textFill="WHITE" AnchorPane.rightAnchor="5.199999999999818" AnchorPane.topAnchor="28.0">
 					<font>
 						<Font name="Tahoma" size="18.0" />
 					</font>
 				</Button>
-				<TableView fx:id="enseignantsList"
-					onMouseClicked="#clickItem" prefHeight="380.0" prefWidth="1146.0"
-					AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0"
-					AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+				<TableView fx:id="enseignantsList" onMouseClicked="#clickItem" prefHeight="380.0" prefWidth="1146.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
 					<columns>
-						<TableColumn fx:id="matricule" minWidth="-Infinity"
-							prefWidth="150.0" text="Matricule" />
-						<TableColumn fx:id="nom" minWidth="-Infinity"
-							prefWidth="150.0" text="Nom" />
-						<TableColumn fx:id="contact" minWidth="-Infinity"
-							prefWidth="150.0" text="Contact" />
+						<TableColumn fx:id="matricule" minWidth="-Infinity" prefWidth="150.0" text="Matricule" />
+						<TableColumn fx:id="nom" minWidth="-Infinity" prefWidth="150.0" text="Nom" />
+						<TableColumn fx:id="contact" minWidth="-Infinity" prefWidth="150.0" text="Contact" />
 					</columns>
 				</TableView>
-				<ButtonBar prefHeight="40.0" prefWidth="200.0"
-					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-					AnchorPane.rightAnchor="0.0">
+				<ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 					<buttons>
-						<Button fx:id="deleteButton" mnemonicParsing="false"
-							onAction="#deleteButtonClicked"
-							style="-fx-background-color: e8003f;" text="🗑 Supprimer"
-							textFill="WHITE">
+						<Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClicked" style="-fx-background-color: e8003f;" text="🗑 Supprimer" textFill="WHITE">
 							<font>
 								<Font name="Tahoma" size="18.0" />
 							</font>
 						</Button>
-						<Button fx:id="updateButton" mnemonicParsing="false"
-							onAction="#updateButtonClicked"
-							style="-fx-background-color: f7c400" text="✏ Modifier"
-							textFill="WHITE">
+						<Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateButtonClicked" style="-fx-background-color: f7c400" text="✏ Modifier" textFill="WHITE">
 							<font>
 								<Font name="Tahoma" size="18.0" />
 							</font>
@@ -83,10 +114,7 @@
 				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
 			</padding>
 		</AnchorPane>
-		<Button onAction="#goHome" mnemonicParsing="false" prefHeight="46.0" fx:id="homeButton"
-			prefWidth="45.0" text="🏠" 
-			AnchorPane.leftAnchor="0.0" 
-			AnchorPane.topAnchor="0.0">
+		<Button fx:id="homeButton" mnemonicParsing="false" onAction="#goHome" prefHeight="46.0" prefWidth="45.0" text="🏠" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<font>
 				<Font name="System Bold" size="19.0" />
 			</font>

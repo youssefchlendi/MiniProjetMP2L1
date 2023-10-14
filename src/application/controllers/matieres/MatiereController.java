@@ -21,6 +21,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -51,9 +52,15 @@ public class MatiereController implements Initializable, IController {
 
 	@FXML
 	public Button addButton;
-	
+
 	@FXML
 	public Button homeButton;
+
+	@FXML
+	public TextField idFilter;
+
+	@FXML
+	public TextField nomFilter;
 
 	NavigationHelpers nh = new NavigationHelpers();
 
@@ -63,6 +70,33 @@ public class MatiereController implements Initializable, IController {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadMatieres();
 		initButtons();
+		initFilters();
+	}
+
+	public void initFilters() {
+		// add listener to the filter fields
+		idFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+			filter();
+		});
+		nomFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+			filter();
+		});
+	}
+
+	public void filter() {
+		// filter the data based on the field values
+		data = dao.filter(idFilter.getText(), nomFilter.getText());
+		matieresList.setItems(data);
+	}
+	
+	@FXML
+	public void clearIdFilter(ActionEvent ev) {
+		idFilter.clear();
+	}
+	
+	@FXML
+	public void clearNomFilter(ActionEvent ev) {
+		nomFilter.clear();
 	}
 
 	private void initButtons() {
