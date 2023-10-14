@@ -112,4 +112,19 @@ public class SceancesDao implements DAOInterface<Sceance, Integer> {
 			return 0;
 		}
 	}
+
+	public ObservableList<Sceance> filter(String matiere, String classe, String enseignant) throws SQLException {
+		String query = "select * from sceances where id_matiere like ? and id_classe like ? and id_enseignant like ?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1, "%" + matiere + "%");
+		ps.setString(2, "%" + classe + "%");
+		ps.setString(3, "%" + enseignant + "%");
+		ResultSet rs = ps.executeQuery();
+		ObservableList<Sceance> ls = FXCollections.observableArrayList();
+
+		while (rs.next()) {
+			ls.add(extract(rs));
+		}
+		return ls;
+	}
 }

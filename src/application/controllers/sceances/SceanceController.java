@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 
 import application.Storage;
 import application.controllers.*;
+import dao.ClassesDao;
+import dao.EnseignantDao;
+import dao.MatieresDao;
 import dao.SceancesDao;
 import helpers.NavigationHelpers;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,17 +22,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.util.StringConverter;
+import models.Classe;
+import models.Enseignant;
+import models.Matiere;
 import models.Sceance;
 
 public class SceanceController implements Initializable, IController {
 
 	SceancesDao dao = new SceancesDao();
+	MatieresDao mdao = new MatieresDao();
+	ClassesDao cdao = new ClassesDao();
+	EnseignantDao edao = new EnseignantDao();
 
 	Sceance selectedItem;
 
@@ -40,7 +51,7 @@ public class SceanceController implements Initializable, IController {
 
 	@FXML
 	public TableColumn<Sceance, String> id;
-	
+
 	@FXML
 	public TableColumn<Sceance, String> jour;
 
@@ -67,9 +78,18 @@ public class SceanceController implements Initializable, IController {
 
 	@FXML
 	public Button addButton;
-	
+
 	@FXML
 	public Button homeButton;
+
+	@FXML
+	public ComboBox<Matiere> matiereFilter;
+
+	@FXML
+	public ComboBox<Classe> classeFilter;
+
+	@FXML
+	public ComboBox<Enseignant> enseignantFilter;
 
 	NavigationHelpers nh = new NavigationHelpers();
 
@@ -79,6 +99,92 @@ public class SceanceController implements Initializable, IController {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadSceances();
 		initButtons();
+		try {
+			initFilters();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void initFilters() throws SQLException {
+		classeFilter.getItems().addAll(cdao.getAll());
+		matiereFilter.getItems().addAll(mdao.getAll());
+		enseignantFilter.getItems().addAll(edao.getAll());
+
+		classeFilter.setConverter(new StringConverter<Classe>() {
+			@Override
+			public String toString(Classe object) {
+				return (object != null) ? object.getNom() : "";
+			}
+
+			@Override
+			public Classe fromString(String string) {
+				// Implement if needed
+				return null;
+			}
+		});
+
+		matiereFilter.setConverter(new StringConverter<Matiere>() {
+			@Override
+			public String toString(Matiere object) {
+				return (object != null) ? object.getNom() : "";
+			}
+
+			@Override
+			public Matiere fromString(String string) {
+				// Implement if needed
+				return null;
+			}
+		});
+
+		enseignantFilter.setConverter(new StringConverter<Enseignant>() {
+			@Override
+			public String toString(Enseignant object) {
+				return (object != null) ? object.getNom() : "";
+			}
+
+			@Override
+			public Enseignant fromString(String string) {
+				// Implement if needed
+				return null;
+			}
+		});
+
+		// listen to change t o all filters
+		classeFilter.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> filterList());
+		matiereFilter.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> filterList());
+		enseignantFilter.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> filterList());
+	}
+
+	public void filterList() {
+		String classeMatricule;
+		String matiereId;
+		String enseignantMatricule;
+
+		if (classeFilter.getSelectionModel().getSelectedItem() != null) {
+			classeMatricule = classeFilter.getSelectionModel().getSelectedItem().getMatricule();
+		} else {
+			classeMatricule = "";
+		}
+
+		if (matiereFilter.getSelectionModel().getSelectedItem() != null) {
+			matiereId = matiereFilter.getSelectionModel().getSelectedItem().getId();
+		} else {
+			matiereId = "";
+		}
+
+		if (enseignantFilter.getSelectionModel().getSelectedItem() != null) {
+			enseignantMatricule = enseignantFilter.getSelectionModel().getSelectedItem().getMatricule();
+		} else {
+			enseignantMatricule = "";
+		}
+
+		try {
+			data = dao.filter(matiereId, classeMatricule, enseignantMatricule);
+			sceancesList.setItems(data);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void initButtons() {
@@ -144,7 +250,8 @@ public class SceanceController implements Initializable, IController {
 		heureFin.setCellValueFactory(new PropertyValueFactory<>("heureFin"));
 		classe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClasse().getNom()));
 		matiere.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMatiere().getNom()));
-		enseignant.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEnseignant().getNom()));
+		enseignant.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getEnseignant().getNom()));
 		sceancesList.setItems(data);
 		selectionModel = sceancesList.getSelectionModel();
 	}
@@ -170,4 +277,20 @@ public class SceanceController implements Initializable, IController {
 			e.printStackTrace();
 		}
 	}
+
+	@FXML
+	public void resetClasseFilter(ActionEvent ev) {
+		classeFilter.getSelectionModel().clearSelection();
+	}
+
+	@FXML
+	public void resetMatiereFilter(ActionEvent ev) {
+		matiereFilter.getSelectionModel().clearSelection();
+	}
+
+	@FXML
+	public void resetEnseignantFilter(ActionEvent ev) {
+		enseignantFilter.getSelectionModel().clearSelection();
+	}
+
 }

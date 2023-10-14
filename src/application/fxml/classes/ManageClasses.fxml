@@ -82,8 +82,8 @@
 			</padding>
 		</AnchorPane>
 		<Button onAction="#goHome" mnemonicParsing="false" prefHeight="46.0" fx:id="homeButton"
-			prefWidth="45.0" text="🏠" AnchorPane.bottomAnchor="654.0"
-			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1255.0"
+			prefWidth="45.0" text="🏠" 
+			AnchorPane.leftAnchor="0.0" 
 			AnchorPane.topAnchor="0.0">
 			<font>
 				<Font name="System Bold" size="19.0" />
