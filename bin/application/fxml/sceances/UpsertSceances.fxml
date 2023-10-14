@@ -40,32 +40,31 @@
                   </Button>
               </buttons>
             </ButtonBar>
-            <VBox layoutX="25.0" layoutY="90.0" prefHeight="122.0" prefWidth="100.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
-               <children>
-                  <Label text="Id">
-                     <font>
-                        <Font name="Tahoma Bold" size="21.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="id" disable="true" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
                <children>
                   <VBox prefHeight="122.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Date debut">
+                        <Label text="Jour">
+                           <font>
+                              <Font name="Tahoma Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="jour" prefWidth="150.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="122.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Heure debut">
                            <font>
                               <Font name="Tahoma Bold" size="21.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ComboBox prefWidth="150.0" />
-                              <TextField fx:id="id1" disable="true">
+                              <TextField fx:id="heureDebut">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -77,17 +76,16 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="122.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                  <VBox layoutX="584.0" layoutY="10.0" prefHeight="122.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Date fin">
+                        <Label text="Heure fin" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Tahoma Bold" size="21.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ComboBox prefWidth="150.0" />
-                              <TextField fx:id="id11" disable="true">
+                              <TextField fx:id="heureFin">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -101,7 +99,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox layoutX="35.0" layoutY="220.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="335.0">
+            <HBox layoutX="35.0" layoutY="220.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="235.0">
                <children>
                   <VBox prefHeight="122.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -110,7 +108,7 @@
                               <Font name="Tahoma Bold" size="21.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="26.0" prefWidth="370.0" VBox.vgrow="ALWAYS">
+                        <ComboBox fx:id="classes" prefHeight="26.0" prefWidth="370.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -127,7 +125,7 @@
                               <Font name="Tahoma Bold" size="21.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="26.0" prefWidth="438.0" />
+                        <ComboBox fx:id="matieres" prefHeight="26.0" prefWidth="438.0" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -140,7 +138,7 @@
                               <Font name="Tahoma Bold" size="21.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="26.0" prefWidth="394.0" />
+                        <ComboBox fx:id="enseignants" prefHeight="26.0" prefWidth="394.0" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

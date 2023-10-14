@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-
+import java.time.LocalTime;
 import dal.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,13 +17,14 @@ public class SceancesDao implements DAOInterface<Sceance, Integer> {
 	@Override
 	public int add(Sceance item) throws Exception {
 		try {
-			String query = "INSERT INTO `sceances` (`heure_debut`, `heure_fin`, `id_enseignant`, `id_matiere`, `id_classe`) VALUES (?, ?, ?, ?, ?)";
+			String query = "INSERT INTO `sceances` (`jour`, `heure_debut`, `heure_fin`, `id_enseignant`, `id_matiere`, `id_classe`) VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setString(1, item.getHeureDebut().toString());
-			ps.setString(2, item.getHeureFin().toString());
-			ps.setString(3, item.getEnseignant().getMatricule());
-			ps.setString(4, item.getMatiere().getId());
-			ps.setString(5, item.getClasse().getMatricule());
+			ps.setString(1, item.getJour());
+			ps.setString(2, item.getHeureDebut().toString());
+			ps.setString(3, item.getHeureFin().toString());
+			ps.setString(4, item.getEnseignant().getMatricule());
+			ps.setString(5, item.getMatiere().getId());
+			ps.setString(6, item.getClasse().getMatricule());
 			
 			int n = ps.executeUpdate();
 			return n;
@@ -77,8 +77,9 @@ public class SceancesDao implements DAOInterface<Sceance, Integer> {
 	private Sceance extract(ResultSet rs) throws SQLException {
 		Sceance cls = new Sceance();
 		cls.setId(rs.getObject("id", Integer.class));
-		cls.setHeureDebut(rs.getObject("heure_debut", LocalDateTime.class));
-		cls.setHeureFin(rs.getObject("heure_fin", LocalDateTime.class));
+		cls.setJour(rs.getString("jour"));
+		cls.setHeureDebut(rs.getObject("heure_debut", LocalTime.class));
+		cls.setHeureFin(rs.getObject("heure_fin", LocalTime.class));
 		cls.setEnseignant(new EnseignantDao().get(rs.getString("id_enseignant")));
 		cls.setMatiere(new MatieresDao().get(rs.getString("id_matiere")));
 		cls.setClasse(new ClassesDao().get(rs.getString("id_classe")));
@@ -87,14 +88,15 @@ public class SceancesDao implements DAOInterface<Sceance, Integer> {
 
 	@Override
 	public void update(Sceance cls) throws SQLException {
-		String query = "update sceances set heure_debut=?, heure_fin=?, id_enseignant=?, id_matiere=?, id_classe=? where id = ?";
+		String query = "update sceances set jour=?, heure_debut=?, heure_fin=?, id_enseignant=?, id_matiere=?, id_classe=? where id = ?";
 		PreparedStatement ps = con.prepareStatement(query);
-		ps.setString(1, cls.getHeureDebut().toString());
-		ps.setString(2, cls.getHeureFin().toString());
-		ps.setString(3, cls.getEnseignant().getMatricule());
-		ps.setString(4, cls.getMatiere().getId());
-		ps.setString(5, cls.getClasse().getMatricule());
-		ps.setInt(6, cls.getId());
+		ps.setString(1, cls.getJour());
+		ps.setString(2, cls.getHeureDebut().toString());
+		ps.setString(3, cls.getHeureFin().toString());
+		ps.setString(4, cls.getEnseignant().getMatricule());
+		ps.setString(5, cls.getMatiere().getId());
+		ps.setString(6, cls.getClasse().getMatricule());
+		ps.setInt(7, cls.getId());
 		ps.executeUpdate();
 	}
 }

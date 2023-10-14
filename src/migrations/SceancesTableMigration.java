@@ -23,8 +23,9 @@ public class SceancesTableMigration implements MigrationInterface {
 	public void up() throws SQLException {
 		String query = "CREATE TABLE sceances ("
 				+ "			id INT AUTO_INCREMENT PRIMARY KEY,"
-				+ "			heure_debut DATETIME NOT NULL,"
-				+ "			heure_fin DATETIME NOT NULL,"
+				+ "         jour VARCHAR(255) NOT NULL,"
+				+ "			heure_debut TIME NOT NULL,"
+				+ "			heure_fin TIME NOT NULL,"
 				+ "			id_enseignant VARCHAR(255),"
 				+ "			id_matiere VARCHAR(255),"
 				+ "			id_classe VARCHAR(255),"

@@ -50,6 +50,8 @@
 					<columns>
 						<TableColumn fx:id="id" minWidth="-Infinity"
 							prefWidth="150.0" text="Id" />
+						<TableColumn fx:id="jour" minWidth="-Infinity"
+							prefWidth="150.0" text="Jour" />
 						<TableColumn fx:id="heureDebut" minWidth="-Infinity"
 							prefWidth="150.0" text="Heure de debut" />
 						<TableColumn fx:id="heureFin" minWidth="-Infinity"

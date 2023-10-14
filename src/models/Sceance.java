@@ -1,40 +1,43 @@
 package models;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Sceance {
-	
+
 	private Integer id;
-	
-	private LocalDateTime heureDebut;
-	
-	private LocalDateTime heureFin;
-	
+
+	private String jour;
+
+	private LocalTime heureDebut;
+
+	private LocalTime heureFin;
+
 	private Classe classe;
-	
+
 	private Matiere matiere;
-	
+
 	private Enseignant enseignant;
-	
-	
+
 	public Sceance() {
 		super();
 	}
 
-	public Sceance(Integer id, LocalDateTime heureDebut, LocalDateTime heureFin, Classe classe, Matiere matiere,
+	public Sceance(Integer id, String jour, LocalTime heureDebut, LocalTime heureFin, Classe classe, Matiere matiere,
 			Enseignant enseignant) {
 		super();
 		this.id = id;
+		this.jour = jour;
 		this.heureDebut = heureDebut;
 		this.heureFin = heureFin;
 		this.classe = classe;
 		this.matiere = matiere;
 		this.enseignant = enseignant;
 	}
-	
-	public Sceance(LocalDateTime heureDebut, LocalDateTime heureFin, Classe classe, Matiere matiere,
+
+	public Sceance(String jour, LocalTime heureDebut, LocalTime heureFin, Classe classe, Matiere matiere,
 			Enseignant enseignant) {
 		super();
+		this.jour = jour;
 		this.heureDebut = heureDebut;
 		this.heureFin = heureFin;
 		this.classe = classe;
@@ -74,20 +77,28 @@ public class Sceance {
 		this.id = id;
 	}
 
-	public LocalDateTime getHeureDebut() {
+	public String getJour() {
+		return jour;
+	}
+
+	public void setJour(String jour) {
+		this.jour = jour;
+	}
+
+	public LocalTime getHeureDebut() {
 		return heureDebut;
 	}
 
-	public void setHeureDebut(LocalDateTime heureDebut) {
+	public void setHeureDebut(LocalTime heureDebut) {
 		this.heureDebut = heureDebut;
 	}
 
-	public LocalDateTime getHeureFin() {
+	public LocalTime getHeureFin() {
 		return heureFin;
 	}
 
-	public void setHeureFin(LocalDateTime heureFin) {
+	public void setHeureFin(LocalTime heureFin) {
 		this.heureFin = heureFin;
 	}
-	
+
 }

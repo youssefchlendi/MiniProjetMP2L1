@@ -40,6 +40,9 @@ public class SceanceController implements Initializable, IController {
 
 	@FXML
 	public TableColumn<Sceance, String> id;
+	
+	@FXML
+	public TableColumn<Sceance, String> jour;
 
 	@FXML
 	public TableColumn<Sceance, String> heureDebut;
@@ -133,6 +136,7 @@ public class SceanceController implements Initializable, IController {
 		}
 
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
+		jour.setCellValueFactory(new PropertyValueFactory<>("jour"));
 		heureDebut.setCellValueFactory(new PropertyValueFactory<>("heureDebut"));
 		heureFin.setCellValueFactory(new PropertyValueFactory<>("heureFin"));
 		classe.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClasse().getNom()));

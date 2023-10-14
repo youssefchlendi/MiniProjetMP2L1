@@ -1,8 +1,8 @@
 package seeders;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
-
+import application.Storage;
 import dao.ClassesDao;
 import dao.EnseignantDao;
 import dao.MatieresDao;
@@ -27,7 +27,7 @@ public class SceancesSeeder extends Seeders {
 				List<Classe> classes = cdao.getAll();
 				List<Enseignant> enseignants = edao.getAll();
 				
-				Sceance cls = new Sceance(LocalDateTime.now(), LocalDateTime.now(), classes.get(i),matieres.get(i), enseignants.get(i));
+				Sceance cls = new Sceance(Storage.Sceance.days.get(i),LocalTime.now(), LocalTime.now(), classes.get(i),matieres.get(i), enseignants.get(i));
 				dao.add(cls);
 			}
 		} catch (Exception e) {
