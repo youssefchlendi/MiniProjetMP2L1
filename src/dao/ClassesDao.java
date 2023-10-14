@@ -97,21 +97,26 @@ public class ClassesDao implements DAOInterface<Classe, String> {
 		}
 	}
 
-	public ObservableList<Classe> filter(String matricule, String nom) throws SQLException {
-		String query = "select * from classes where matricule like ? and nom like ?";
-		PreparedStatement ps = con.prepareStatement(query);
-		ps.setString(1, "%" + matricule + "%");
-		ps.setString(2, "%" + nom + "%");
-		ResultSet rs = ps.executeQuery();
-		ObservableList<Classe> ls = FXCollections.observableArrayList();
+	public ObservableList<Classe> filter(String matricule, String nom) {
+		try {
 
-		while (rs.next()) {
-			Classe cls = new Classe();
-			cls.setMatricule(rs.getString("matricule"));
-			cls.setNom(rs.getString("nom"));
-			ls.add(cls);
+			String query = "select * from classes where matricule like ? and nom like ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, "%" + matricule + "%");
+			ps.setString(2, "%" + nom + "%");
+			ResultSet rs = ps.executeQuery();
+			ObservableList<Classe> ls = FXCollections.observableArrayList();
+
+			while (rs.next()) {
+				Classe cls = new Classe();
+				cls.setMatricule(rs.getString("matricule"));
+				cls.setNom(rs.getString("nom"));
+				ls.add(cls);
+			}
+			return ls;
+		} catch (Exception ex) {
+			return FXCollections.observableArrayList();
 		}
-		return ls;
 	}
-	
+
 }
