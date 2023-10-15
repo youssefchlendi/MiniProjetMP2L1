@@ -22,13 +22,32 @@ public class SceancesSeeder extends Seeders {
 	@Override
 	public void seed() {
 		try {
-			for (int i = 0; i < count; i++) {
-				List<Matiere> matieres = mdao.getAll();
-				List<Classe> classes = cdao.getAll();
-				List<Enseignant> enseignants = edao.getAll();
-				
-				Sceance cls = new Sceance(Storage.Sceance.days.get(i),LocalTime.now(), LocalTime.now(), classes.get(i),matieres.get(i), enseignants.get(i));
-				dao.add(cls);
+			List<Matiere> matieres = mdao.getAll();
+			List<Classe> classes = cdao.getAll();
+			List<Enseignant> enseignants = edao.getAll();
+
+			for (Classe classe : classes) {
+				for (String jour : Storage.Sceance.days) {
+					LocalTime heureDebut = LocalTime.of(8, 0);
+					LocalTime heureFin = heureDebut.plusHours(1);
+
+					while (heureFin.getHour() < 13 && heureDebut.getHour() >= 8) {
+						// if(heureDebut.getHour() == 11 || heureDebut.getHour() == 12) {
+						// heureDebut = heureDebut.plusHours(1);
+						// heureFin = heureDebut.plusHours(1);
+						// continue;
+						// }
+
+						// Sélectionnez aléatoirement une matière et un enseignant
+						Matiere matiere = matieres.get((int) (Math.random() * matieres.size()));
+						Enseignant enseignant = enseignants.get((int) (Math.random() * enseignants.size()));
+
+						Sceance sceance = new Sceance(jour, heureDebut, heureFin, classe, matiere, enseignant);
+						dao.add(sceance);
+						heureDebut = heureDebut.plusHours(1);
+						heureFin = heureDebut.plusHours(1);
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

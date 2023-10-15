@@ -18,6 +18,6 @@ public class Storage {
 
 	public static class Sceance {
 		public static Integer id;
-		public static List<String> days = Arrays.asList("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+		public static List<String> days = Arrays.asList("Lundi","Mardi","Mercredi","Jeudi","Vendredi");
 	}
 }

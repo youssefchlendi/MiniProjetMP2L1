@@ -1,6 +1,5 @@
 package seeders;
 
-
 import dao.ClassesDao;
 import helpers.StringHelpers;
 import models.Classe;
@@ -11,13 +10,23 @@ public class ClassesSeeder extends Seeders {
 
 	@Override
 	public void seed() {
-		for (int i = 0; i < count; i++) {
-			Classe cls = new Classe(StringHelpers.generateRandomString(5), StringHelpers.generateRandomString(15));
-			try {
-				dao.add(cls);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			dao.add(new Classe("1A", "Première Année A"));
+			dao.add(new Classe("2A", "Deuxième Année A"));
+			dao.add(new Classe("3A", "Troisième Année A"));
+			dao.add(new Classe("4A", "Quatrième Année A"));
+			dao.add(new Classe("5A", "Cinquième Année A"));
+			dao.add(new Classe("6A", "Sixième Année A"));
+			dao.add(new Classe("7A", "Septième Année A"));
+			dao.add(new Classe("8A", "Huitième Année A"));
+			dao.add(new Classe("9A", "Neuvième Année A"));
+			dao.add(new Classe("10A", "Dixième Année A"));
+			dao.add(new Classe("11A", "Onzième Année A"));
+			dao.add(new Classe("12A", "Douzième Année A"));
+			dao.add(new Classe("13A", "Treizième Année A"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
