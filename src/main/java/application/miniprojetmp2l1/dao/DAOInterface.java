@@ -1,0 +1,21 @@
+package application.miniprojetmp2l1.dao;
+
+import java.sql.SQLException;
+
+import javafx.collections.ObservableList;
+
+public interface DAOInterface<T,TID> {
+	
+	public int add(T item) throws Exception;
+
+	public void delete(TID id) throws SQLException;
+
+	public T get(TID id) throws SQLException;
+
+	public ObservableList<T> getAll() throws SQLException;
+
+	public void update(T emp) throws SQLException;
+
+	public int count();
+	
+}
