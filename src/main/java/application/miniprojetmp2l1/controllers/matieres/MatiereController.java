@@ -3,6 +3,7 @@ package application.miniprojetmp2l1.controllers.matieres;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import application.miniprojetmp2l1.Storage;
 import application.miniprojetmp2l1.controllers.IController;
@@ -74,12 +75,8 @@ public class MatiereController implements Initializable, IController {
 
 	public void initFilters() {
 		// add listener to the filter fields
-		idFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-			filter();
-		});
-		nomFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-			filter();
-		});
+		idFilter.textProperty().addListener((observable, oldValue, newValue) -> filter());
+		nomFilter.textProperty().addListener((observable, oldValue, newValue) -> filter());
 	}
 
 	public void filter() {
@@ -89,12 +86,12 @@ public class MatiereController implements Initializable, IController {
 	}
 	
 	@FXML
-	public void clearIdFilter(ActionEvent ev) {
+	public void clearIdFilter(ActionEvent ignoredEv) {
 		idFilter.clear();
 	}
 	
 	@FXML
-	public void clearNomFilter(ActionEvent ev) {
+	public void clearNomFilter(ActionEvent ignoredEv) {
 		nomFilter.clear();
 	}
 
@@ -115,7 +112,7 @@ public class MatiereController implements Initializable, IController {
 	}
 
 	@FXML
-	public void deleteButtonClicked(ActionEvent event) {
+	public void deleteButtonClicked(ActionEvent ignoredEvent) {
 		if (selectedItem != null) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Supprimer matiere");
@@ -135,12 +132,12 @@ public class MatiereController implements Initializable, IController {
 	}
 
 	@FXML
-	public void updateButtonClicked(ActionEvent event) {
+	public void updateButtonClicked(ActionEvent ignoredEvent) {
 		if (selectedItem != null) {
 			Pane ctrl;
 			try {
 				Storage.Matiere.id = selectedItem.getId();
-				ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/matieres/UpsertMatieres.fxml"));
+				ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/matieres/UpsertMatieres.fxml")));
 				nh.navigate(addButton, "Modifier matiere", ctrl);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -162,10 +159,10 @@ public class MatiereController implements Initializable, IController {
 	}
 
 	@FXML
-	public void addButtonClicked(ActionEvent ev) {
+	public void addButtonClicked(ActionEvent ignoredEv) {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/matieres/UpsertMatieres.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/matieres/UpsertMatieres.fxml")));
 			nh.navigate(addButton, "Ajouter matiere", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -176,7 +173,7 @@ public class MatiereController implements Initializable, IController {
 	public void goHome() {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/dashboard/Dashboard.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/dashboard/Dashboard.fxml")));
 			nh.navigate(homeButton, "Dashboard", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();

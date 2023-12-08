@@ -3,6 +3,7 @@ package application.miniprojetmp2l1.controllers.sceances;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import application.miniprojetmp2l1.Storage;
 import application.miniprojetmp2l1.controllers.IController;
@@ -113,44 +114,44 @@ public class SceanceController implements Initializable, IController {
 		matiereFilter.getItems().addAll(mdao.getAll());
 		enseignantFilter.getItems().addAll(edao.getAll());
 
-		classeFilter.setConverter(new StringConverter<Classe>() {
-			@Override
-			public String toString(Classe object) {
-				return (object != null) ? object.getNom() : "";
-			}
+		classeFilter.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Classe object) {
+                return (object != null) ? object.getNom() : "";
+            }
 
-			@Override
-			public Classe fromString(String string) {
-				// Implement if needed
-				return null;
-			}
-		});
+            @Override
+            public Classe fromString(String string) {
+                // Implement if needed
+                return null;
+            }
+        });
 
-		matiereFilter.setConverter(new StringConverter<Matiere>() {
-			@Override
-			public String toString(Matiere object) {
-				return (object != null) ? object.getNom() : "";
-			}
+		matiereFilter.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Matiere object) {
+                return (object != null) ? object.getNom() : "";
+            }
 
-			@Override
-			public Matiere fromString(String string) {
-				// Implement if needed
-				return null;
-			}
-		});
+            @Override
+            public Matiere fromString(String string) {
+                // Implement if needed
+                return null;
+            }
+        });
 
-		enseignantFilter.setConverter(new StringConverter<Enseignant>() {
-			@Override
-			public String toString(Enseignant object) {
-				return (object != null) ? object.getNom() : "";
-			}
+		enseignantFilter.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Enseignant object) {
+                return (object != null) ? object.getNom() : "";
+            }
 
-			@Override
-			public Enseignant fromString(String string) {
-				// Implement if needed
-				return null;
-			}
-		});
+            @Override
+            public Enseignant fromString(String string) {
+                // Implement if needed
+                return null;
+            }
+        });
 
 		// listen to change t o all filters
 		classeFilter.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> filterList());
@@ -206,7 +207,7 @@ public class SceanceController implements Initializable, IController {
 	}
 
 	@FXML
-	public void deleteButtonClicked(ActionEvent event) {
+	public void deleteButtonClicked(ActionEvent ignoredEvent) {
 		if (selectedItem != null) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Supprimer sceance");
@@ -226,12 +227,12 @@ public class SceanceController implements Initializable, IController {
 	}
 
 	@FXML
-	public void updateButtonClicked(ActionEvent event) {
+	public void updateButtonClicked(ActionEvent ignoredEvent) {
 		if (selectedItem != null) {
 			Pane ctrl;
 			try {
 				Storage.Sceance.id = selectedItem.getId();
-				ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/sceances/UpsertSceances.fxml"));
+				ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/sceances/UpsertSceances.fxml")));
 				nh.navigate(addButton, "Modifier sceance", ctrl);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -259,10 +260,10 @@ public class SceanceController implements Initializable, IController {
 	}
 
 	@FXML
-	public void addButtonClicked(ActionEvent ev) {
+	public void addButtonClicked(ActionEvent ignoredEv) {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/sceances/UpsertSceances.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/sceances/UpsertSceances.fxml")));
 			nh.navigate(addButton, "Ajouter sceance", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -273,7 +274,7 @@ public class SceanceController implements Initializable, IController {
 	public void goHome() {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/dashboard/Dashboard.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/dashboard/Dashboard.fxml")));
 			nh.navigate(homeButton, "Dashboard", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -281,17 +282,17 @@ public class SceanceController implements Initializable, IController {
 	}
 
 	@FXML
-	public void resetClasseFilter(ActionEvent ev) {
+	public void resetClasseFilter(ActionEvent ignoredEv) {
 		classeFilter.getSelectionModel().clearSelection();
 	}
 
 	@FXML
-	public void resetMatiereFilter(ActionEvent ev) {
+	public void resetMatiereFilter(ActionEvent ignoredEv) {
 		matiereFilter.getSelectionModel().clearSelection();
 	}
 
 	@FXML
-	public void resetEnseignantFilter(ActionEvent ev) {
+	public void resetEnseignantFilter(ActionEvent ignoredEv) {
 		enseignantFilter.getSelectionModel().clearSelection();
 	}
 

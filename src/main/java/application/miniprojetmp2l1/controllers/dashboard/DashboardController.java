@@ -2,6 +2,7 @@ package application.miniprojetmp2l1.controllers.dashboard;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import application.miniprojetmp2l1.controllers.IController;
 import application.miniprojetmp2l1.dao.ClassesDao;
@@ -29,13 +30,13 @@ public class DashboardController implements Initializable, IController {
 	@FXML
 	public Label sceancesCount;
 	
-	private EnseignantDao EDao = new EnseignantDao();
+	private final EnseignantDao EDao = new EnseignantDao();
 	
-	private MatieresDao MDao = new MatieresDao();
+	private final MatieresDao MDao = new MatieresDao();
 	
-	private ClassesDao CDao = new ClassesDao();
+	private final ClassesDao CDao = new ClassesDao();
 	
-	private SceancesDao SDao = new SceancesDao();
+	private final SceancesDao SDao = new SceancesDao();
 	
 	public NavigationHelpers nh = new NavigationHelpers();
 	
@@ -51,7 +52,7 @@ public class DashboardController implements Initializable, IController {
 		
 			Pane ctrl;
 			try {
-				ctrl = FXMLLoader.load(getClass().getResource(pagePath));
+				ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(pagePath)));
 				nh.navigate(enseignantsCount, pageName, ctrl);
 			} catch (IOException e) {
 				e.printStackTrace();

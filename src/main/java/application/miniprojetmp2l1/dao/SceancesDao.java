@@ -16,22 +16,17 @@ public class SceancesDao implements DAOInterface<Sceance, Integer> {
 
 	@Override
 	public int add(Sceance item) throws Exception {
-		try {
-			String query = "INSERT INTO `sceances` (`jour`, `heure_debut`, `heure_fin`, `id_enseignant`, `id_matiere`, `id_classe`) VALUES (?, ?, ?, ?, ?, ?)";
-			PreparedStatement ps = con.prepareStatement(query);
-			ps.setString(1, item.getJour());
-			ps.setString(2, item.getHeureDebut().toString());
-			ps.setString(3, item.getHeureFin().toString());
-			ps.setString(4, item.getEnseignant().getMatricule());
-			ps.setString(5, item.getMatiere().getId());
-			ps.setString(6, item.getClasse().getMatricule());
-			
-			int n = ps.executeUpdate();
-			return n;
-		} catch (Exception ex) {
-			throw ex;
-		}
-	}
+        String query = "INSERT INTO `sceances` (`jour`, `heure_debut`, `heure_fin`, `id_enseignant`, `id_matiere`, `id_classe`) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1, item.getJour());
+        ps.setString(2, item.getHeureDebut().toString());
+        ps.setString(3, item.getHeureFin().toString());
+        ps.setString(4, item.getEnseignant().getMatricule());
+        ps.setString(5, item.getMatiere().getId());
+        ps.setString(6, item.getClasse().getMatricule());
+
+        return ps.executeUpdate();
+    }
 
 	@Override
 	public void delete(Integer id) throws SQLException {
@@ -55,7 +50,7 @@ public class SceancesDao implements DAOInterface<Sceance, Integer> {
 			cls = extract(rs);
 		}
 
-		if (check == true) {
+		if (check) {
 			return cls;
 		} else
 			throw new SQLException();

@@ -21,8 +21,7 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 			ps.setString(1, item.getMatricule());
 			ps.setString(2, item.getNom());
 			ps.setString(3, item.getContact());
-			int n = ps.executeUpdate();
-			return n;
+            return ps.executeUpdate();
 		} catch (Exception ex) {
 			if (ex.getMessage().contains("PRIMARY"))
 				throw new Exception("L'enseignant avec la matricule " + item.getMatricule() + " existe deja");
@@ -55,7 +54,7 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 			ens.setContact(rs.getString("contact"));
 		}
 
-		if (check == true) {
+		if (check) {
 			return ens;
 		} else
 			throw new SQLException();
@@ -66,6 +65,10 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 		String query = "select * from enseignants";
 		PreparedStatement ps = con.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
+		return getEnseignants(rs);
+	}
+
+	private ObservableList<Enseignant> getEnseignants(ResultSet rs) throws SQLException {
 		ObservableList<Enseignant> ls = FXCollections.observableArrayList();
 
 		while (rs.next()) {
@@ -113,16 +116,7 @@ public class EnseignantDao implements DAOInterface<Enseignant, String> {
 			ps.setString(2, "%" + nom + "%");
 			ps.setString(3, "%" + contact + "%");
 			ResultSet rs = ps.executeQuery();
-			ObservableList<Enseignant> ls = FXCollections.observableArrayList();
-
-			while (rs.next()) {
-				Enseignant ens = new Enseignant();
-				ens.setMatricule(rs.getString("matricule"));
-				ens.setNom(rs.getString("nom"));
-				ens.setContact(rs.getString("contact"));
-				ls.add(ens);
-			}
-			return ls;
+			return getEnseignants(rs);
 		} catch (Exception exd) {
 			return FXCollections.observableArrayList();
 		}

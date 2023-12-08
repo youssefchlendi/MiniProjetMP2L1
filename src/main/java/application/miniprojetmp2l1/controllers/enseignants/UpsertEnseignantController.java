@@ -3,6 +3,7 @@ package application.miniprojetmp2l1.controllers.enseignants;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import application.miniprojetmp2l1.Storage;
 import application.miniprojetmp2l1.controllers.IController;
@@ -73,7 +74,7 @@ public class UpsertEnseignantController implements Initializable, IController {
 	public void navigateToManageEnseignants() {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/enseignants/ManageEnseignants.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/enseignants/ManageEnseignants.fxml")));
 			nh.navigate(cancelButton, "Gérer les enseignants", ctrl);
 			clearData();
 		} catch (IOException e) {
@@ -82,12 +83,12 @@ public class UpsertEnseignantController implements Initializable, IController {
 	}
 
 	@FXML
-	public void cancelButtonClicked(ActionEvent event) {
+	public void cancelButtonClicked(ActionEvent ignoredEvent) {
 		navigateToManageEnseignants();
 	}
 
 	@FXML
-	public void upsertButtonClicked(ActionEvent event) {
+	public void upsertButtonClicked(ActionEvent ignoredEvent) {
 		if (validateForm()) {
 			if(Storage.Enseignant.id != null) {
 				try {

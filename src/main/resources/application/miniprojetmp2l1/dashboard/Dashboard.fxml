@@ -12,23 +12,17 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/miniprojetmp2l1/1" fx:controller="application.miniprojetmp2l1.controllers.dashboard.DashboardController">
-	<children>
 		<ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<image>
 				<Image url="@../../../../../../../../../MiniProjetMP2L1/src/application/assets/back.jpg" />
-			</image>
 		</ImageView>
-		<AnchorPane style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-			<children>
+		<AnchorPane style="-fx-background-color: red;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
 				<Label text="Page d'acceuil" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<font>
 						<Font name="Tahoma Bold" size="36.0" />
 					</font>
 				</Label>
             <FlowPane prefHeight="200.0" prefWidth="200.0" rowValignment="TOP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-               <children>
                   <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2d969b;">
-                     <children>
                         <Label text="Enseignants" textFill="WHITE">
                            <font>
                               <Font name="Tahoma Bold" size="18.0" />
@@ -40,15 +34,12 @@
                            </font>
                         </Label>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
                               <Hyperlink onAction="#goToEnseignants"  text="▶" textFill="WHITE">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Hyperlink>
-                           </children>
                         </HBox>
-                     </children>
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
@@ -63,7 +54,6 @@
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
-                     <children>
                         <Label text="Matieres" textFill="WHITE">
                            <font>
                               <Font name="Tahoma Bold" size="18.0" />
@@ -75,15 +65,12 @@
                            </font>
                         </Label>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
                               <Hyperlink text="▶" textFill="WHITE" onAction="#goToMatieres">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Hyperlink>
-                           </children>
                         </HBox>
-                     </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -95,7 +82,6 @@
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
-                     <children>
                         <Label text="Classes" textFill="WHITE">
                            <font>
                               <Font name="Tahoma Bold" size="18.0" />
@@ -107,15 +93,12 @@
                            </font>
                         </Label>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
                               <Hyperlink text="▶" textFill="WHITE" onAction="#goToClasses">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Hyperlink>
-                           </children>
                         </HBox>
-                     </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -127,7 +110,6 @@
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
-                     <children>
                         <Label text="Sceances" textFill="WHITE">
                            <font>
                               <Font name="Tahoma Bold" size="18.0" />
@@ -139,15 +121,12 @@
                            </font>
                         </Label>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
                               <Hyperlink text="▶" textFill="WHITE" onAction="#goToSceances">
                                  <font>
                                     <Font size="25.0" />
                                  </font>
                               </Hyperlink>
-                           </children>
                         </HBox>
-                     </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -155,12 +134,9 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </FlowPane.margin>
                   </VBox>
-               </children>
             </FlowPane>
-			</children>
 			<padding>
 				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
 			</padding>
 		</AnchorPane>
-	</children>
 </AnchorPane>

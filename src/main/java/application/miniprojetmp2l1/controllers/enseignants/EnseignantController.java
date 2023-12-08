@@ -3,6 +3,7 @@ package application.miniprojetmp2l1.controllers.enseignants;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import application.miniprojetmp2l1.Storage;
@@ -75,15 +76,9 @@ public class EnseignantController implements Initializable, IController {
 
 	private void initFilters() {
 		// add listener to the filter fields
-		matriculeFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-			filter();
-		});
-		nomFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-			filter();
-		});
-		contactFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-			filter();
-		});
+		matriculeFilter.textProperty().addListener((observable, oldValue, newValue) -> filter());
+		nomFilter.textProperty().addListener((observable, oldValue, newValue) -> filter());
+		contactFilter.textProperty().addListener((observable, oldValue, newValue) -> filter());
 	}
 
 	public void filter() {
@@ -92,17 +87,17 @@ public class EnseignantController implements Initializable, IController {
 	}
 
 	@FXML
-	public void clearMatriculeFilter(ActionEvent ev) {
+	public void clearMatriculeFilter(ActionEvent ignoredEv) {
 		matriculeFilter.clear();
 	}
 
 	@FXML
-	public void clearNomFilter(ActionEvent ev) {
+	public void clearNomFilter(ActionEvent ignoredEv) {
 		nomFilter.clear();
 	}
 
 	@FXML
-	public void clearContactFilter(ActionEvent ev) {
+	public void clearContactFilter(ActionEvent ignoredEv) {
 		contactFilter.clear();
 	}
 
@@ -123,7 +118,7 @@ public class EnseignantController implements Initializable, IController {
 	}
 
 	@FXML
-	public void deleteButtonClicked(ActionEvent event) {
+	public void deleteButtonClicked(ActionEvent ignoredEvent) {
 		if (selectedItem != null) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Supprimer enseignant");
@@ -143,12 +138,12 @@ public class EnseignantController implements Initializable, IController {
 	}
 
 	@FXML
-	public void updateButtonClicked(ActionEvent event) {
+	public void updateButtonClicked(ActionEvent ignoredEvent) {
 		if (selectedItem != null) {
 			Pane ctrl;
 			try {
 				Storage.Enseignant.id = selectedItem.getMatricule();
-				ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/enseignants/UpsertEnseignant.fxml"));
+				ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/enseignants/UpsertEnseignant.fxml")));
 				nh.navigate(addButton, "Modifier enseignant", ctrl);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -171,10 +166,10 @@ public class EnseignantController implements Initializable, IController {
 	}
 
 	@FXML
-	public void addButtonClicked(ActionEvent ev) {
+	public void addButtonClicked(ActionEvent ignoredEv) {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/enseignants/UpsertEnseignant.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/enseignants/UpsertEnseignant.fxml")));
 			nh.navigate(addButton, "Ajouter enseignant", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -185,7 +180,7 @@ public class EnseignantController implements Initializable, IController {
 	public void goHome() {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/dashboard/Dashboard.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/dashboard/Dashboard.fxml")));
 			nh.navigate(homeButton, "Dashboard", ctrl);
 		} catch (IOException e) {
 			e.printStackTrace();

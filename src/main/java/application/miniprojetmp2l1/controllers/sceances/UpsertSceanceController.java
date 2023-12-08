@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import application.miniprojetmp2l1.Storage;
 import application.miniprojetmp2l1.controllers.IController;
@@ -111,50 +112,50 @@ public class UpsertSceanceController implements Initializable, IController {
 		matieres.getItems().addAll(mdao.getAll());
 		enseignants.getItems().addAll(edao.getAll());
 
-		classes.setConverter(new StringConverter<Classe>() {
-			@Override
-			public String toString(Classe object) {
-				return (object != null) ? object.getNom() : "";
-			}
+		classes.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Classe object) {
+                return (object != null) ? object.getNom() : "";
+            }
 
-			@Override
-			public Classe fromString(String string) {
-				// Implement if needed
-				return null;
-			}
-		});
+            @Override
+            public Classe fromString(String string) {
+                // Implement if needed
+                return null;
+            }
+        });
 
-		matieres.setConverter(new StringConverter<Matiere>() {
-			@Override
-			public String toString(Matiere object) {
-				return (object != null) ? object.getNom() : "";
-			}
+		matieres.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Matiere object) {
+                return (object != null) ? object.getNom() : "";
+            }
 
-			@Override
-			public Matiere fromString(String string) {
-				// Implement if needed
-				return null;
-			}
-		});
+            @Override
+            public Matiere fromString(String string) {
+                // Implement if needed
+                return null;
+            }
+        });
 
-		enseignants.setConverter(new StringConverter<Enseignant>() {
-			@Override
-			public String toString(Enseignant object) {
-				return (object != null) ? object.getNom() : "";
-			}
+		enseignants.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Enseignant object) {
+                return (object != null) ? object.getNom() : "";
+            }
 
-			@Override
-			public Enseignant fromString(String string) {
-				// Implement if needed
-				return null;
-			}
-		});
+            @Override
+            public Enseignant fromString(String string) {
+                // Implement if needed
+                return null;
+            }
+        });
 	}
 
 	public void navigateToManageSceances() {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/sceances/ManageSceances.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/sceances/ManageSceances.fxml")));
 			nh.navigate(cancelButton, "Gérer les sceances", ctrl);
 			clearData();
 		} catch (IOException e) {
@@ -163,13 +164,13 @@ public class UpsertSceanceController implements Initializable, IController {
 	}
 
 	@FXML
-	public void cancelButtonClicked(ActionEvent event) {
+	public void cancelButtonClicked(ActionEvent ignoredEvent) {
 		navigateToManageSceances();
 		clearData();
 	}
 
 	@FXML
-	public void upsertButtonClicked(ActionEvent event) {
+	public void upsertButtonClicked(ActionEvent ignoredEvent) {
 		if (validateForm()) {
 			if (Storage.Sceance.id != null) {
 				try {

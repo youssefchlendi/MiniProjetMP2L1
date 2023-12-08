@@ -6,16 +6,16 @@ import javafx.collections.ObservableList;
 
 public interface DAOInterface<T,TID> {
 	
-	public int add(T item) throws Exception;
+	int add(T item) throws Exception;
 
-	public void delete(TID id) throws SQLException;
+	void delete(TID id) throws SQLException;
 
-	public T get(TID id) throws SQLException;
+	T get(TID id) throws SQLException;
 
-	public ObservableList<T> getAll() throws SQLException;
+	ObservableList<T> getAll() throws SQLException;
 
-	public void update(T emp) throws SQLException;
+	void update(T emp) throws SQLException;
 
-	public int count();
+	int count();
 	
 }

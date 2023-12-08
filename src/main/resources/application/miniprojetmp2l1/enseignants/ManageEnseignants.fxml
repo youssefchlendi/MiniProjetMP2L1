@@ -15,30 +15,23 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/miniprojetmp2l1/1" fx:controller="application.miniprojetmp2l1.controllers.enseignants.EnseignantController">
-	<children>
 		<ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<image>
 				<Image url="@../../../../../../../../../MiniProjetMP2L1/src/application/assets/back.jpg" />
-			</image>
 		</ImageView>
 		<AnchorPane style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-			<children>
 				<Label text="Gestion des enseignants" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<font>
 						<Font name="Tahoma Bold" size="36.0" />
 					</font>
 				</Label>
             <FlowPane orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="305.6" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
-               <children>
                   <Label text="Filtres :">
                      <font>
                         <Font name="Tahoma Bold" size="20.0" />
                      </font>
                   </Label>
                   <HBox prefHeight="39.0" prefWidth="1150.0">
-                     <children>
                         <HBox prefHeight="39.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
-                           <children>
                               <Label text="Matricule : ">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -46,13 +39,11 @@
                               </Label>
                               <TextField fx:id="matriculeFilter" />
                               <Button onAction="#clearMatriculeFilter" mnemonicParsing="false" text="X" textFill="RED" />
-                           </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
                         <HBox prefHeight="39.0" prefWidth="500.0">
-                           <children>
                               <Label text="Nom : ">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -60,13 +51,11 @@
                               </Label>
                               <TextField fx:id="nomFilter"/>
                               <Button onAction="#clearNomFilter" mnemonicParsing="false" text="X" textFill="RED" />
-                           </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
                         <HBox layoutX="660.0" layoutY="10.0" prefHeight="39.0" prefWidth="500.0">
-                           <children>
                               <Label text="Contact : ">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -74,14 +63,11 @@
                               </Label>
                               <TextField fx:id="contactFilter"/>
                               <Button onAction="#clearContactFilter" mnemonicParsing="false" text="X" textFill="RED" />
-                           </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </HBox>
-                     </children>
                   </HBox>
-               </children>
             </FlowPane>
 				<Button fx:id="addButton" layoutX="1122.0" layoutY="58.0" mnemonicParsing="false" onAction="#addButtonClicked" style="-fx-background-color: #42b15d;" text="+ Ajouter" textFill="WHITE" AnchorPane.rightAnchor="5.199999999999818" AnchorPane.topAnchor="28.0">
 					<font>
@@ -109,7 +95,6 @@
 						</Button>
 					</buttons>
 				</ButtonBar>
-			</children>
 			<padding>
 				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
 			</padding>
@@ -119,5 +104,4 @@
 				<Font name="System Bold" size="19.0" />
 			</font>
 		</Button>
-	</children>
 </AnchorPane>

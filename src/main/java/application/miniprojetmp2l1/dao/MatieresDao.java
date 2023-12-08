@@ -20,8 +20,7 @@ public class MatieresDao implements DAOInterface<Matiere, String> {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, item.getId());
 			ps.setString(2, item.getNom());
-			int n = ps.executeUpdate();
-			return n;
+            return ps.executeUpdate();
 		} catch (Exception ex) {
 			if (ex.getMessage().contains("PRIMARY"))
 				throw new Exception("La matiere avec la id " + item.getId() + " existe deja");
@@ -52,7 +51,7 @@ public class MatieresDao implements DAOInterface<Matiere, String> {
 			cls.setNom(rs.getString("nom"));
 		}
 
-		if (check == true) {
+		if (check) {
 			return cls;
 		} else
 			throw new SQLException();
@@ -63,6 +62,10 @@ public class MatieresDao implements DAOInterface<Matiere, String> {
 		String query = "select * from matieres";
 		PreparedStatement ps = con.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
+		return getMatieres(rs);
+	}
+
+	private ObservableList<Matiere> getMatieres(ResultSet rs) throws SQLException {
 		ObservableList<Matiere> ls = FXCollections.observableArrayList();
 
 		while (rs.next()) {
@@ -104,15 +107,7 @@ public class MatieresDao implements DAOInterface<Matiere, String> {
 			ps.setString(1, "%" + id + "%");
 			ps.setString(2, "%" + nom + "%");
 			ResultSet rs = ps.executeQuery();
-			ObservableList<Matiere> ls = FXCollections.observableArrayList();
-
-			while (rs.next()) {
-				Matiere cls = new Matiere();
-				cls.setId(rs.getString("id"));
-				cls.setNom(rs.getString("nom"));
-				ls.add(cls);
-			}
-			return ls;
+			return getMatieres(rs);
 		} catch (Exception ex) {
 			return FXCollections.observableArrayList();
 		}

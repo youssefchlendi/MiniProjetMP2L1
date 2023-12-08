@@ -3,6 +3,7 @@ package application.miniprojetmp2l1.controllers.matieres;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import application.miniprojetmp2l1.Storage;
 import application.miniprojetmp2l1.controllers.IController;
@@ -69,7 +70,7 @@ public class UpsertMatiereController implements Initializable, IController {
 	public void navigateToManageMatieres() {
 		Pane ctrl;
 		try {
-			ctrl = FXMLLoader.load(getClass().getResource("/application/miniprojetmp2l1/matieres/ManageMatieres.fxml"));
+			ctrl = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/application/miniprojetmp2l1/matieres/ManageMatieres.fxml")));
 			nh.navigate(cancelButton, "Gérer les matieres", ctrl);
 			clearData();
 		} catch (IOException e) {
@@ -78,12 +79,12 @@ public class UpsertMatiereController implements Initializable, IController {
 	}
 
 	@FXML
-	public void cancelButtonClicked(ActionEvent event) {
+	public void cancelButtonClicked(ActionEvent ignoredEvent) {
 		navigateToManageMatieres();
 	}
 
 	@FXML
-	public void upsertButtonClicked(ActionEvent event) {
+	public void upsertButtonClicked(ActionEvent ignoredEvent) {
 		if (validateForm()) {
 			if(Storage.Matiere.id != null) {
 				try {

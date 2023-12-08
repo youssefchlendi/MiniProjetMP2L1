@@ -7,9 +7,9 @@ import application.miniprojetmp2l1.dal.DatabaseConnection;
 public interface MigrationInterface {
 	Connection cnx = DatabaseConnection.getConnection();
 
-	public void migrate(Boolean remove) throws SQLException;
+	void migrate(Boolean remove) throws SQLException;
 
-	public void up() throws SQLException;
+	void up() throws SQLException;
 
-	public void down() throws SQLException;
+	void down() throws SQLException;
 }

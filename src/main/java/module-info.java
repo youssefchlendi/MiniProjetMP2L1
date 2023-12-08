@@ -6,6 +6,7 @@ module application.miniprojetmp2l1 {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires mysql.connector.java;
 
     opens application.miniprojetmp2l1 to javafx.fxml , javafx.base;
     opens application.miniprojetmp2l1.controllers.dashboard to javafx.fxml , javafx.base;

@@ -21,8 +21,7 @@ public class ClassesDao implements DAOInterface<Classe, String> {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, item.getMatricule());
 			ps.setString(2, item.getNom());
-			int n = ps.executeUpdate();
-			return n;
+            return ps.executeUpdate();
 		} catch (Exception ex) {
 			if (ex.getMessage().contains("PRIMARY"))
 				throw new Exception("La classe avec la matricule " + item.getMatricule() + " existe deja");
@@ -53,7 +52,7 @@ public class ClassesDao implements DAOInterface<Classe, String> {
 			cls.setNom(rs.getString("nom"));
 		}
 
-		if (check == true) {
+		if (check) {
 			return cls;
 		} else
 			throw new SQLException();
@@ -64,15 +63,7 @@ public class ClassesDao implements DAOInterface<Classe, String> {
 		String query = "select * from classes";
 		PreparedStatement ps = con.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
-		ObservableList<Classe> ls = FXCollections.observableArrayList();
-
-		while (rs.next()) {
-			Classe cls = new Classe();
-			cls.setMatricule(rs.getString("matricule"));
-			cls.setNom(rs.getString("nom"));
-			ls.add(cls);
-		}
-		return ls;
+		return getClasses(rs);
 	}
 
 	@Override
@@ -105,18 +96,22 @@ public class ClassesDao implements DAOInterface<Classe, String> {
 			ps.setString(1, "%" + matricule + "%");
 			ps.setString(2, "%" + nom + "%");
 			ResultSet rs = ps.executeQuery();
-			ObservableList<Classe> ls = FXCollections.observableArrayList();
-
-			while (rs.next()) {
-				Classe cls = new Classe();
-				cls.setMatricule(rs.getString("matricule"));
-				cls.setNom(rs.getString("nom"));
-				ls.add(cls);
-			}
-			return ls;
+			return getClasses(rs);
 		} catch (Exception ex) {
 			return FXCollections.observableArrayList();
 		}
+	}
+
+	private ObservableList<Classe> getClasses(ResultSet rs) throws SQLException {
+		ObservableList<Classe> ls = FXCollections.observableArrayList();
+
+		while (rs.next()) {
+			Classe cls = new Classe();
+			cls.setMatricule(rs.getString("matricule"));
+			cls.setNom(rs.getString("nom"));
+			ls.add(cls);
+		}
+		return ls;
 	}
 
 }

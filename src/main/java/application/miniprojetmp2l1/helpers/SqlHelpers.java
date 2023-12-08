@@ -12,11 +12,7 @@ public class SqlHelpers {
 		ps.setString(1, "mp2l");
 		ps.setString(2, tableName);
 		ResultSet rs = ps.executeQuery();
-		
-		if (rs.next()) {
-			return true;
-		}
-		
-		return false;
-	}
+
+        return rs.next();
+    }
 }
