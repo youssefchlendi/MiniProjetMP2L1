@@ -15,7 +15,7 @@
 		<ImageView AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 				<Image url="@../../../../../../../../../MiniProjetMP2L1/src/application/assets/back.jpg" />
 		</ImageView>
-		<AnchorPane style="-fx-background-color: red;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+		<AnchorPane style="-fx-background-color: white;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
 				<Label text="Page d'acceuil" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<font>
 						<Font name="Tahoma Bold" size="36.0" />
