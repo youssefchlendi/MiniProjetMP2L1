@@ -21,6 +21,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UpsertClasseController implements Initializable, IController {
 
@@ -42,6 +44,10 @@ public class UpsertClasseController implements Initializable, IController {
 
 	@FXML
 	public Label title;
+
+	@FXML
+	public ImageView background;
+
 
 	NavigationHelpers nh = new NavigationHelpers();
 
@@ -66,6 +72,9 @@ public class UpsertClasseController implements Initializable, IController {
 		}else {
 			title.setText("Ajouter une classe");
 		}
+		Image image1 = new Image("file:C:/Users/pc/Desktop/MiniProjetMP2L1/src/main/java/application/miniprojetmp2l1/controllers/back.jpg");
+		background.setImage(image1);
+
 	}
 
 	public void navigateToManageClasses() {

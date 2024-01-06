@@ -20,6 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UpsertEnseignantController implements Initializable, IController {
 
@@ -44,6 +46,10 @@ public class UpsertEnseignantController implements Initializable, IController {
 
 	@FXML
 	public Label title;
+	
+	@FXML
+	public ImageView background;
+
 
 	NavigationHelpers nh = new NavigationHelpers();
 
@@ -51,6 +57,8 @@ public class UpsertEnseignantController implements Initializable, IController {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Image image1 = new Image("file:C:/Users/pc/Desktop/MiniProjetMP2L1/src/main/java/application/miniprojetmp2l1/controllers/back.jpg");
+		background.setImage(image1);
 		if (Storage.Enseignant.id != null && !Storage.Enseignant.id.isBlank()) {
 			try {
 				item = dao.get(Storage.Enseignant.id);

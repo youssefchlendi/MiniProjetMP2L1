@@ -34,6 +34,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class SceanceController implements Initializable, IController {
 
@@ -94,12 +96,17 @@ public class SceanceController implements Initializable, IController {
 	@FXML
 	public ComboBox<Enseignant> enseignantFilter;
 
+	@FXML
+	public ImageView background;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	private ObservableList<Sceance> data;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Image image1 = new Image("file:C:/Users/pc/Desktop/MiniProjetMP2L1/src/main/java/application/miniprojetmp2l1/controllers/back.jpg");
+		background.setImage(image1);
 		loadSceances();
 		initButtons();
 		try {

@@ -29,6 +29,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
 import javafx.util.StringConverter;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UpsertSceanceController implements Initializable, IController {
 
@@ -66,12 +68,17 @@ public class UpsertSceanceController implements Initializable, IController {
 	@FXML
 	public Label title;
 
+	@FXML
+	public ImageView background;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	Alert alert = new Alert(AlertType.NONE);
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Image image1 = new Image("file:C:/Users/pc/Desktop/MiniProjetMP2L1/src/main/java/application/miniprojetmp2l1/controllers/back.jpg");
+		background.setImage(image1);
 		jour.getItems().addAll(Storage.Sceance.days);
 
 		try {

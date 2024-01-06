@@ -26,6 +26,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class ClasseController implements Initializable, IController {
 
@@ -62,6 +64,9 @@ public class ClasseController implements Initializable, IController {
 	@FXML
 	public TextField nomFilter;
 
+	@FXML
+	public ImageView background;
+
 	NavigationHelpers nh = new NavigationHelpers();
 
 	private ObservableList<Classe> data;
@@ -71,6 +76,8 @@ public class ClasseController implements Initializable, IController {
 		loadClasses();
 		initButtons();
 		initFilters();
+		Image image1 = new Image("file:C:/Users/pc/Desktop/MiniProjetMP2L1/src/main/java/application/miniprojetmp2l1/controllers/back.jpg");
+		background.setImage(image1);
 	}
 
 	private void initFilters() {

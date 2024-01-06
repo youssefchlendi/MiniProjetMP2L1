@@ -20,12 +20,9 @@
 	xmlns:fx="http://javafx.com/miniprojetmp2l1/1"
 	fx:controller="application.miniprojetmp2l1.controllers.sceances.SceanceController">
 	<children>
-		<ImageView AnchorPane.bottomAnchor="0.0"
+		<ImageView fx:id="background" AnchorPane.bottomAnchor="0.0"
 			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 			AnchorPane.topAnchor="0.0">
-			<image>
-				<Image url="@../../../../../../../../../MiniProjetMP2L1/src/application/assets/back.jpg" />
-			</image>
 		</ImageView>
 		<AnchorPane style="-fx-background-color: white;"
 			AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0"

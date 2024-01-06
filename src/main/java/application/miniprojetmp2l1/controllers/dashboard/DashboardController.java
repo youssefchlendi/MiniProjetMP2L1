@@ -10,11 +10,14 @@ import application.miniprojetmp2l1.dao.EnseignantDao;
 import application.miniprojetmp2l1.dao.MatieresDao;
 import application.miniprojetmp2l1.dao.SceancesDao;
 import application.miniprojetmp2l1.helpers.NavigationHelpers;
+import application.miniprojetmp2l1.Assets;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class DashboardController implements Initializable, IController {
 
@@ -29,6 +32,9 @@ public class DashboardController implements Initializable, IController {
 	
 	@FXML
 	public Label sceancesCount;
+
+	@FXML
+	public ImageView background;
 	
 	private final EnseignantDao EDao = new EnseignantDao();
 	
@@ -46,6 +52,11 @@ public class DashboardController implements Initializable, IController {
 		matieresCount.setText(String.valueOf(MDao.count()));
 		classesCount.setText(String.valueOf(CDao.count()));
 		sceancesCount.setText(String.valueOf(SDao.count()));
+
+		Image image1 = new Image("file:C:/Users/pc/Desktop/MiniProjetMP2L1/src/main/java/application/miniprojetmp2l1/controllers/back.jpg");
+
+		background.setImage(image1);
+
 	}
 
 	public void goToPage(String pageName, String pagePath) {
